@@ -6,13 +6,21 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "axios": "^0.20.0",
     "react": "^16.13.1",
+    "react-device-detect": "^1.14.0",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.3"
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.3",
+    "react-share": "^4.3.1",
+    "react-spotify-web-playback": "^0.7.0",
+    "styled-components": "^5.2.0",
+    "universal-cookie": "^4.0.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "PORT=4200 react-scripts start",
+    "build": "react-scripts build && node post-build.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
