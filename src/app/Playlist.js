@@ -428,10 +428,11 @@ class Playlist extends Component {
               <button
                 className="save-btn"
                 onClick={() => {
+                  this.audio.play();
                   this.saveSpotifyPlaylist();
                 }}
               >
-                Save to Library
+                Play Horoscope
               </button>
               <SocialMediaContainer>
                 <p className="share-text">Share Playlist</p>
