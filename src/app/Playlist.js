@@ -250,7 +250,7 @@ class Playlist extends Component {
       deviceId: undefined,
       currentURI: props.playlist.tracks[0].uri,
       startPlayingMusic: false,
-      showPlayButton: true,
+
       videoIsPlaying: false,
       signTranscript: video.transcript
     };
@@ -339,23 +339,14 @@ class Playlist extends Component {
     });
   };
 
-  startPlayingVideo = () => {
-    this.setState({ videoIsPlaying: false });
-    setTimeout(() => {
-      this.setState({ videoIsPlaying: true, showPlayButton: false });
-    }, 5);
-  };
-
   renderMobileStream = () => {
     const {
       currentURI,
       signTranscript,
-      showPlayButton,
+
       videoIsPlaying
     } = this.state;
     const { playlist } = this.props;
-
-    const showButton = showPlayButton && !videoIsPlaying;
 
     return (
       <PlaylistContainer>
@@ -371,17 +362,6 @@ class Playlist extends Component {
               height="100%"
               controls={true}
             />
-            {showButton ? (
-              <PlayButtonContainer>
-                <FaPlay
-                  style={{ cursor: "pointer" }}
-                  size={48}
-                  onClick={() => {
-                    this.startPlayingVideo();
-                  }}
-                />
-              </PlayButtonContainer>
-            ) : null}
           </HoroscopeVideoContainer>
           <HoroscopeSign>{playlist.sign}</HoroscopeSign>
           <HoroscopeText>{signTranscript}</HoroscopeText>
@@ -447,19 +427,12 @@ class Playlist extends Component {
   };
 
   renderDesktopStream = () => {
-    const {
-      startPlayingMusic,
-      signTranscript,
-      videoIsPlaying,
-      showPlayButton
-    } = this.state;
+    const { startPlayingMusic, signTranscript, videoIsPlaying } = this.state;
     const { playlist, accessToken } = this.props;
 
     let tracks = playlist.tracks.map(track => {
       return track.uri;
     });
-
-    const showButton = showPlayButton && !videoIsPlaying;
 
     return (
       <PlaylistContainer>
@@ -477,18 +450,6 @@ class Playlist extends Component {
                 this.setState({ startPlayingMusic: true });
               }}
             />
-
-            {showButton ? (
-              <PlayButtonContainer>
-                <FaPlay
-                  style={{ cursor: "pointer" }}
-                  size={48}
-                  onClick={() => {
-                    this.startPlayingVideo();
-                  }}
-                />
-              </PlayButtonContainer>
-            ) : null}
           </HoroscopeVideoContainer>
 
           <HoroscopeSign>{playlist.sign}</HoroscopeSign>
