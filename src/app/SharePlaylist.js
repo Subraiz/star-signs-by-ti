@@ -3,6 +3,7 @@ import styled from "styled-components";
 import axios from "axios";
 import { withRouter } from "react-router";
 import { FacebookShareButton, TwitterShareButton } from "react-share";
+import ZodiacWheel from "../assets/Wheel.png";
 import ReactPlayer from "react-player";
 import Video from "../assets/video/Lebron.mp4";
 import AlbumLogo from "../assets/AlbumLogo.png";
