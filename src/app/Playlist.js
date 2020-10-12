@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { isMobile } from "react-device-detect";
 import { FacebookShareButton, TwitterShareButton } from "react-share";
 import { withRouter } from "react-router";
-import SpotifyPlayer, { STATUS } from "react-spotify-web-playback";
+import SpotifyPlayer from "react-spotify-web-playback";
 import axios from "axios";
 import { FaPlay } from "react-icons/fa";
 import ReactPlayer from "react-player";
@@ -249,9 +249,11 @@ class Playlist extends Component {
     this.setState({ videoIsPlaying: true });
   };
 
-  componentDidMount = () => {};
-
-  componentWillUnmount() {}
+  componentWillUnmount() {
+    if (!isMobile) {
+      this.trackSpotifyState();
+    }
+  }
 
   saveSpotifyPlaylist = async () => {
     const { serverUrl, accessToken, userId, playlist } = this.props;
@@ -329,12 +331,7 @@ class Playlist extends Component {
   };
 
   renderMobileStream = () => {
-    const {
-      currentURI,
-      signTranscript,
-
-      videoIsPlaying
-    } = this.state;
+    const { signTranscript, videoIsPlaying } = this.state;
     const { playlist } = this.props;
 
     return (
@@ -393,6 +390,7 @@ class Playlist extends Component {
 
           <WebSongDetailsContainer>
             <iframe
+              title="Spotify Web Player"
               src={`https://open.spotify.com/embed/playlist/${playlist.playlist_id}`}
               width="100%"
               height="100%"
@@ -517,7 +515,7 @@ class Playlist extends Component {
   trackSpotifyState = () => {
     const { accessToken, serverUrl } = this.props;
 
-    const updateState = setInterval(() => {
+    setInterval(() => {
       const url = serverUrl + "/player";
 
       axios({
@@ -542,14 +540,10 @@ class Playlist extends Component {
   };
 
   render() {
-    {
-      if (isMobile) {
-        {
-          return this.renderMobileStream();
-        }
-      } else {
-        return this.renderDesktopStream();
-      }
+    if (isMobile) {
+      return this.renderMobileStream();
+    } else {
+      return this.renderDesktopStream();
     }
   }
 }

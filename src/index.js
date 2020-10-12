@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import "./index.css";
 import App from "./app/app";
@@ -14,7 +14,7 @@ serverUrl = "https://starsignsbyti.com:4000/api";
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter history={history}>
+    <Router history={history}>
       <Switch>
         <Route exact path="/playlist/:sign">
           <SharePlaylist serverUrl={serverUrl} />
@@ -23,7 +23,7 @@ ReactDOM.render(
           <App serverUrl={serverUrl} />
         </Route>
       </Switch>
-    </BrowserRouter>
+    </Router>
   </React.StrictMode>,
   document.getElementById("root")
 );

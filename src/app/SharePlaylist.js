@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import axios from "axios";
 import { withRouter } from "react-router";
 import { FacebookShareButton, TwitterShareButton } from "react-share";
@@ -361,6 +361,7 @@ class SharePlaylist extends Component {
             <a
               className={"btn stream-button stream-override-button"}
               target="_blank"
+              rel="noopener noreferrer"
               href={`https://open.spotify.com/playlist/${playlist.playlist_id}`}
             >
               Stream

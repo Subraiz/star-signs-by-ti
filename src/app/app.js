@@ -1,18 +1,13 @@
 import React, { Component } from "react";
 import styled, { css } from "styled-components";
 import axios from "axios";
-import { Route, Link } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { withRouter } from "react-router";
-import SpotifyPlayer, { STATUS } from "react-spotify-web-playback";
-import { CallbackState } from "react-spotify-web-playback/lib/types";
-import { isMobile } from "react-device-detect";
 import ZodiacWheel from "../assets/Wheel.png";
 import AlbumLogo from "../assets/AlbumLogo.png";
 import { SpotifyAuth } from "../components";
-import Animation from "./Animation";
 import Playlist from "./Playlist";
-import styles from "./home.css";
+import "./home.css";
 
 const cookies = new Cookies();
 
@@ -225,7 +220,7 @@ class App extends Component {
     };
   }
 
-  componentWillMount = async () => {
+  componentDidMount = async () => {
     let refreshToken = cookies.get("refresh_token");
     let birthMonth = cookies.get("birth_month");
 
@@ -372,12 +367,13 @@ class App extends Component {
           </SecondContainer>
           <ThirdContainer authenticated={authenticated}>
             {!authenticated ? (
-              <a className={"btn share-button"}>Share</a>
+              <button className={"btn share-button"}>Share</button>
             ) : null}
 
             <a
               className={"btn stream-button"}
               target="_blank"
+              rel="noopener noreferrer"
               href={`https://open.spotify.com/playlist/${playlist.playlist_id}`}
             >
               Stream

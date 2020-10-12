@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import axios from "axios";
 import Cookies from "universal-cookie";
-import { Route, Link } from "react-router-dom";
 import ReactPlayer from "react-player";
 import Video from "../assets/video/Lebron.mp4";
 
@@ -118,12 +116,12 @@ class SpotifyAuth extends Component {
     };
   }
 
-  componentWillMount = () => {
+  componentDidMount = () => {
     cookies.set("birthMonth", this.state.birthMonth, { path: "/" });
     cookies.set("birthDate", this.state.birthDate, { path: "/" });
     cookies.set("birthYear", this.state.birthYear, { path: "/" });
 
-    const checkAge = setInterval(() => {
+    setInterval(() => {
       if (
         this.state.birthMonth &&
         this.state.birthDate &&
@@ -214,7 +212,6 @@ class SpotifyAuth extends Component {
       birthDate,
       birthYear,
       videoIsPlaying,
-      errorMessage,
       href
     } = this.state;
     return (
