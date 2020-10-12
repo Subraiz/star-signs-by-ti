@@ -55,7 +55,7 @@ const HoroscopeVideoContainer = styled.div`
   height: 531px;
   background-color: #f8e3b3;
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: 20px;
   border: 2px solid #d2a038;
   box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
   position: relative;

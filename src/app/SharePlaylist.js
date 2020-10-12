@@ -4,7 +4,6 @@ import axios from "axios";
 import { withRouter } from "react-router";
 import { FacebookShareButton, TwitterShareButton } from "react-share";
 import ReactPlayer from "react-player";
-import { FaPlay } from "react-icons/fa";
 import Video from "../assets/video/Lebron.mp4";
 import AlbumLogo from "../assets/AlbumLogo.png";
 import Signs from "./Signs";
@@ -315,18 +314,6 @@ class SharePlaylist extends Component {
                 height="100%"
                 controls={false}
               />
-
-              {!videoIsPlaying ? (
-                <PlayButtonContainer>
-                  <FaPlay
-                    style={{ cursor: "pointer" }}
-                    size={48}
-                    onClick={() => {
-                      this.setState({ videoIsPlaying: true });
-                    }}
-                  />
-                </PlayButtonContainer>
-              ) : null}
             </HoroscopeVideoContainer>
             <p className="zodiac-sign">{playlist.sign}</p>
             <SocialMediaContainer>
