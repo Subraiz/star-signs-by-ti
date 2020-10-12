@@ -4,6 +4,10 @@ html,
 body {
   margin: 0;
   padding: 0;
+  overscroll-behavior: none;
+}
+
+* {
   -webkit-overflow-scrolling: touch;
 }
 
@@ -12,6 +16,8 @@ html {
   background-size: cover;
   background-position: center;
   overflow-x: hidden;
+  height: 100vh;
+  overflow-y: scroll;
 }
 
 button:active {

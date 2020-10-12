@@ -56,7 +56,6 @@ const StyledApp = styled.div`
 
   @media (max-width: 500px) {
     flex-direction: column;
-    overflow: scroll;
     justify-content: flex-start;
   }
 `;
