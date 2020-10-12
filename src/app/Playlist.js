@@ -237,9 +237,8 @@ class Playlist extends Component {
 
     this.state = {
       deviceId: undefined,
-      currentURI: props.playlist.tracks[0].uri,
+      currentSong: props.playlist.tracks[0].name,
       startPlayingMusic: false,
-
       videoIsPlaying: false,
       signTranscript: video.transcript
     };
@@ -248,12 +247,6 @@ class Playlist extends Component {
   componentWillMount = async () => {
     this.setState({ videoIsPlaying: true });
   };
-
-  componentWillUnmount() {
-    if (!isMobile) {
-      this.trackSpotifyState();
-    }
-  }
 
   saveSpotifyPlaylist = async () => {
     const { serverUrl, accessToken, userId, playlist } = this.props;
@@ -309,10 +302,10 @@ class Playlist extends Component {
 
   renderPlaylistSongNames = () => {
     const { playlist } = this.props;
-    const { currentURI } = this.state;
+    const { currentSong } = this.state;
 
     return playlist.tracks.map((song, i) => {
-      if (song.uri === currentURI) {
+      if (currentSong.includes(song.name)) {
         return (
           <SongContainer key={i}>
             <CurrentSong>{song.name}</CurrentSong>
@@ -414,7 +407,12 @@ class Playlist extends Component {
   };
 
   renderDesktopStream = () => {
-    const { startPlayingMusic, signTranscript, videoIsPlaying } = this.state;
+    const {
+      startPlayingMusic,
+      signTranscript,
+      videoIsPlaying,
+      currentSong
+    } = this.state;
     const { playlist, accessToken } = this.props;
 
     let tracks = playlist.tracks.map(track => {
@@ -493,6 +491,9 @@ class Playlist extends Component {
                 name={"Spotify Web (The Libra)"}
                 token={accessToken}
                 uris={tracks}
+                callback={state => {
+                  this.setState({ currentSong: state.track.name });
+                }}
                 // autoPlay={true}
                 play={startPlayingMusic}
                 persistDeviceSelection
@@ -510,33 +511,6 @@ class Playlist extends Component {
         </WebPlaylistInfo>
       </PlaylistContainer>
     );
-  };
-
-  trackSpotifyState = () => {
-    const { accessToken, serverUrl } = this.props;
-
-    setInterval(() => {
-      const url = serverUrl + "/player";
-
-      axios({
-        method: "GET",
-        url,
-        params: { device_id: this.state.deviceId, access_token: accessToken }
-      })
-        .then(res => {
-          let state = res.data;
-
-          const currentURI = state.item.uri;
-
-          if (currentURI !== this.state.currentURI) {
-            console.log(state);
-            this.setState({ currentURI });
-          }
-        })
-        .catch(err => {
-          window.location.reload();
-        });
-    }, 1000);
   };
 
   render() {
