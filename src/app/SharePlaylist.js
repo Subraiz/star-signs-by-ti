@@ -22,6 +22,37 @@ const StyledApp = styled.div`
   }
 `;
 
+const SpinningZodiacWheel = styled.div`
+  position: fixed;
+  background-image: url(${ZodiacWheel});
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 106vh;
+  top: -3vh;
+  transition: opacity 0.5s linear;
+  opacity: 0.4;
+  width: 100vw;
+  z-index: -1;
+  animation: spin 60s linear;
+  animation-iteration-count: infinite;
+  overflow: hidden;
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (max-width: 500px) {
+    display: none;
+  }
+`;
+
 const FirstContainer = styled.div`
   width: 350px;
   margin-left: 25px;
@@ -300,6 +331,7 @@ class SharePlaylist extends Component {
     if (!loading) {
       return (
         <StyledApp>
+          <SpinningZodiacWheel />
           <FirstContainer>
             <div className="logo-placeholder" />
           </FirstContainer>
