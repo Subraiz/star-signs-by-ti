@@ -379,6 +379,15 @@ class Playlist extends Component {
                 <p className="icon-text">T</p>
               </SocialMediaIcon>
             </TwitterShareButton>
+            <SocialMediaIcon>
+              <a
+                href="instagram://story-camera"
+                className="icon-text"
+                rel="noopener noreferrer"
+              >
+                I
+              </a>
+            </SocialMediaIcon>
           </div>
 
           <WebSongDetailsContainer>
