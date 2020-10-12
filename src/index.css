@@ -38,7 +38,7 @@ u {
   text-decoration: none;
 }
 
-@media (max-width: 415px) {
+@media (max-width: 500px) {
   html {
     background-image: url("./assets/ZodiacWheel.png");
   }

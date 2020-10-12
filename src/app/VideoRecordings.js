@@ -1,4 +1,4 @@
-const Audio = {
+const VideoRecordings = {
   aquarius: [
     {
       track: require("../assets/audio/Aquarius 1.mp3"),
@@ -121,4 +121,4 @@ const Audio = {
   ]
 };
 
-export default Audio;
+export default VideoRecordings;

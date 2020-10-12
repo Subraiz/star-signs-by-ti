@@ -1,14 +1,28 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { createBrowserHistory } from "history";
 import "./index.css";
 import App from "./app/app";
+import SharePlaylist from "./app/SharePlaylist";
 import * as serviceWorker from "./serviceWorker";
+
+const history = createBrowserHistory();
+
+let serverUrl = "http://localhost:5000/api";
+//serverUrl = "https://starsignsbyti.com:4000/api";
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App route={"/"} />
+    <BrowserRouter history={history}>
+      <Switch>
+        <Route exact path="/playlist/:sign">
+          <SharePlaylist serverUrl={serverUrl} />
+        </Route>
+        <Route path="/">
+          <App serverUrl={serverUrl} />
+        </Route>
+      </Switch>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")

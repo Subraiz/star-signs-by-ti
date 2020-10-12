@@ -2,33 +2,32 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { isMobile } from "react-device-detect";
 import { FacebookShareButton, TwitterShareButton } from "react-share";
+import { withRouter } from "react-router";
 import SpotifyPlayer, { STATUS } from "react-spotify-web-playback";
 import axios from "axios";
 import { FaPlay } from "react-icons/fa";
 import ReactPlayer from "react-player";
-import AudioRecordings from "./AudioRecordings";
+import VideoRecordings from "./VideoRecordings";
 import Video from "../assets/video/Lebron.mp4";
 
 const PlaylistContainer = styled.div`
   background: none;
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  left: 0;
+  position: absolute;
   display: flex;
-  justify-content: center;
-  align-items: center;
 
-  @media (max-width: 415px) {
+  @media (max-width: 500px) {
     flex-direction: column;
     height: auto;
     justify-content: flex-start;
     align-items: center;
     position: absolute;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
   }
 
-  @media (min-width: 416px) and (max-width: 1300px) {
-    align-items: flex-end;
+  @media (min-width: 501px) and (max-width: 1300px) {
+    align-items: flex-start;
     bottom: 20px;
   }
 `;
@@ -36,14 +35,13 @@ const PlaylistContainer = styled.div`
 const HoroscopeContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 80vh;
   margin-right: 4vw;
+  align-items: center;
   justify-content: space-between;
-  position: relative;
   width: 300px;
   font-family: "Merriweather", serif;
 
-  @media (max-width: 415px) {
+  @media (max-width: 500px) {
     width: 300px;
     margin-right: 0;
     justify-content: flex-start;
@@ -52,8 +50,8 @@ const HoroscopeContainer = styled.div`
 `;
 
 const HoroscopeVideoContainer = styled.div`
-  width: 100%;
-  height: 533px;
+  width: 300px;
+  height: 531px;
   background-color: #f8e3b3;
   overflow: hidden;
   border-radius: 10px;
@@ -61,8 +59,13 @@ const HoroscopeVideoContainer = styled.div`
   box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
   position: relative;
 
-  @media (max-width: 415px) {
-    height: 533px;
+  @media (max-width: 500px) {
+    height: 531px;
+  }
+
+  @media (min-width: 501px) and (max-width: 1300px) {
+    width: 250px;
+    height: 443px;
   }
 `;
 
@@ -88,7 +91,7 @@ const HoroscopeText = styled.p`
   text-align: center;
   line-height: 1.2;
 
-  @media (max-width: 415px) {
+  @media (max-width: 500px) {
     line-height: 1;
   }
 `;
@@ -101,7 +104,7 @@ const WebPlaylistInfo = styled.div`
   height: 80vh;
   font-family: "Merriweather", serif;
 
-  @media (max-width: 415px) {
+  @media (max-width: 500px) {
     width: 80vw;
     height: auto;
     margin-top: 25px;
@@ -116,7 +119,7 @@ const WebSongDetailsContainer = styled.div`
   background-color: #f8e3b3;
   box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
 
-  @media (max-width: 415px) {
+  @media (max-width: 500px) {
     height: 35vh;
     margin-bottom: 20px;
     border: 0px solid black;
@@ -157,7 +160,7 @@ const ZodiacSign = styled.p`
   padding-bottom: 5px;
   text-transform: capitalize;
 
-  @media (max-width: 415px) {
+  @media (max-width: 500px) {
     border: 0px solid black;
   }
 `;
@@ -173,6 +176,10 @@ const PlayerContainer = styled.div`
 
 const Player = styled.div`
   width: 100%;
+
+  @media (max-width: 500px) {
+    margin-bottom: 25px;
+  }
 `;
 
 const ShareContainer = styled.div`
@@ -214,24 +221,21 @@ const SocialMediaContainer = styled.div`
   align-items: center;
 
   .share-text {
-    font-family: "Merriweather", serif
+    font-family: "Merriweather", serif;
     margin: 0 25px 0 0;
   }
 
-  @media (min-width: 416px) and (max-width: 675px) {
+  @media (min-width: 501px) and (max-width: 675px) {
     justify-content: center;
 
     .share-text {
       display: none;
     }
-
   }
 
   @media (max-width: 1300px) {
     margin-bottom: 10px;
   }
-
-
 `;
 
 class Playlist extends Component {
@@ -239,48 +243,26 @@ class Playlist extends Component {
     super(props);
 
     const sign = props.playlist.sign;
-    const audio =
-      AudioRecordings[sign.toLowerCase()][Math.floor(Math.random() * 2)];
-
-    this.audio = new Audio(audio.track);
+    const video =
+      VideoRecordings[sign.toLowerCase()][Math.floor(Math.random() * 2)];
 
     this.state = {
       deviceId: undefined,
       currentURI: props.playlist.tracks[0].uri,
       startPlayingMusic: false,
-      recordingAudioIsPlaying: false,
+
       videoIsPlaying: false,
-      signTranscript: audio.transcript
+      signTranscript: video.transcript
     };
   }
 
-  componentWillMount = async () => {};
-
-  componentDidMount = () => {
-    try {
-      this.audio.play();
-    } catch (e) {
-      console.log(e);
-    }
-
-    this.audio.addEventListener("ended", () => {
-      this.setState({
-        startPlayingMusic: true
-      });
-    });
-    this.audio.addEventListener("play", () => {
-      this.setState({
-        recordingAudioIsPlaying: true,
-        videoIsPlaying: true
-      });
-    });
+  componentWillMount = async () => {
+    this.setState({ videoIsPlaying: true });
   };
 
-  componentWillUnmount() {
-    this.audio.removeEventListener("ended", () =>
-      this.setState({ audioIsPlaying: false })
-    );
-  }
+  componentDidMount = () => {};
+
+  componentWillUnmount() {}
 
   saveSpotifyPlaylist = async () => {
     const { serverUrl, accessToken, userId, playlist } = this.props;
@@ -297,7 +279,7 @@ class Playlist extends Component {
       }
     })
       .then(res => {
-        // Redirect to share screen
+        this.props.history.push(`/playlist/${playlist.sign}`);
       })
       .catch(err => {
         // Handle error
@@ -361,7 +343,7 @@ class Playlist extends Component {
     const {
       currentURI,
       signTranscript,
-      recordingAudioIsPlaying,
+
       videoIsPlaying
     } = this.state;
     const { playlist } = this.props;
@@ -374,19 +356,19 @@ class Playlist extends Component {
             <ReactPlayer
               className="react-player"
               url={Video}
-              style={{}}
+              autoPlay={true}
               playing={videoIsPlaying}
               width="100%"
               height="100%"
               controls={false}
             />
-            {!recordingAudioIsPlaying ? (
+            {!videoIsPlaying ? (
               <PlayButtonContainer>
                 <FaPlay
                   style={{ cursor: "pointer" }}
                   size={48}
                   onClick={() => {
-                    this.audio.play();
+                    this.setState({ videoIsPlaying: true });
                   }}
                 />
               </PlayButtonContainer>
@@ -456,12 +438,7 @@ class Playlist extends Component {
   };
 
   renderDesktopStream = () => {
-    const {
-      startPlayingMusic,
-      recordingAudioIsPlaying,
-      signTranscript,
-      videoIsPlaying
-    } = this.state;
+    const { startPlayingMusic, signTranscript, videoIsPlaying } = this.state;
     const { playlist, accessToken } = this.props;
 
     let tracks = playlist.tracks.map(track => {
@@ -475,19 +452,22 @@ class Playlist extends Component {
             <ReactPlayer
               className="react-player"
               url={Video}
-              style={{}}
+              autoPlay={true}
               playing={videoIsPlaying}
               width="100%"
               height="100%"
               controls={false}
+              onEnded={() => {
+                this.setState({ startPlayingMusic: true });
+              }}
             />
-            {!recordingAudioIsPlaying ? (
+            {!videoIsPlaying ? (
               <PlayButtonContainer>
                 <FaPlay
                   style={{ cursor: "pointer" }}
                   size={48}
                   onClick={() => {
-                    this.audio.play();
+                    this.setState({ videoIsPlaying: true });
                   }}
                 />
               </PlayButtonContainer>
@@ -607,4 +587,4 @@ class Playlist extends Component {
   }
 }
 
-export default Playlist;
+export default withRouter(Playlist);

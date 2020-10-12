@@ -14,9 +14,6 @@ import Animation from "./Animation";
 import Playlist from "./Playlist";
 import styles from "./home.css";
 
-let serverUrl = "http://localhost:5000/api";
-//serverUrl = "https://starsignsbyti.com:4000/api";
-
 const cookies = new Cookies();
 
 const SpinningZodiacWheel = styled.div`
@@ -45,7 +42,7 @@ const SpinningZodiacWheel = styled.div`
     }
   }
 
-  @media (max-width: 415px) {
+  @media (max-width: 500px) {
     display: none;
   }
 `;
@@ -57,7 +54,7 @@ const StyledApp = styled.div`
   flex-direction: row;
   justify-content: space-between;
 
-  @media (max-width: 415px) {
+  @media (max-width: 500px) {
     flex-direction: column;
     overflow: scroll;
     justify-content: flex-start;
@@ -87,7 +84,7 @@ const FirstContainer = styled.div`
   ${props =>
     props.authenticated &&
     css`
-      @media (min-width: 415px) and (max-width: 1300px) {
+      @media (min-width: 501px) and (max-width: 1300px) {
         position: absolute;
         display: flex;
         align-items: center;
@@ -106,7 +103,7 @@ const FirstContainer = styled.div`
   ${props =>
     !props.authenticated &&
     css`
-      @media (min-width: 415px) and (max-width: 720px) {
+      @media (min-width: 501px) and (max-width: 720px) {
         position: absolute;
         display: flex;
         align-items: center;
@@ -122,7 +119,7 @@ const FirstContainer = styled.div`
       }
     `}
 
-  @media (max-width: 415px) {
+  @media (max-width: 500px) {
     width: 100vw;
     margin-left: 0;
     display: flex;
@@ -153,20 +150,21 @@ const SecondContainer = styled.div`
   margin: 0 auto;
   transition: left 0.5s ease-out;
 
-  @media (max-width: 415px) {
+  @media (max-width: 500px) {
     align-items: flex-start;
     width: 100vw;
     margin: 0 auto;
     left: 0;
     position: relative;
-    height: auto;
   }
 
   ${props =>
     !props.authenticated &&
     css`
-      @media (min-width: 415px) and (max-width: 720px) {
+      @media (min-width: 501px) and (max-width: 720px) {
         width: 250px;
+        left: 0;
+        right: 0;
       }
 
       @media (min-width: 729px) and (max-width: 1100px) {
@@ -182,14 +180,14 @@ const ThirdContainer = styled.div`
   position: absolute;
   right: 0;
 
-  @media (max-width: 415px) {
+  @media (max-width: 500px) {
     display: none;
   }
 
   ${props =>
     !props.authenticated &&
     css`
-      @media (min-width: 415px) and (max-width: 720px) {
+      @media (min-width: 501px) and (max-width: 720px) {
         display: none;
       }
 
@@ -285,7 +283,7 @@ class App extends Component {
   };
 
   getNewAccessToken = async refreshToken => {
-    const url = `${serverUrl}/auth/refresh`;
+    const url = `${this.props.serverUrl}/auth/refresh`;
     let accessToken;
 
     await axios({
@@ -300,7 +298,7 @@ class App extends Component {
   };
 
   getUser = async accessToken => {
-    const url = `${serverUrl}/user`;
+    const url = `${this.props.serverUrl}/user`;
     let user;
 
     await axios({
@@ -318,7 +316,7 @@ class App extends Component {
   };
 
   getPlaylist = async (month, day, accessToken) => {
-    const url = `${serverUrl}/playlist/sign`;
+    const url = `${this.props.serverUrl}/playlist/sign`;
     let playlist;
 
     await axios({
@@ -366,11 +364,11 @@ class App extends Component {
               <Playlist
                 accessToken={accessToken}
                 playlist={playlist}
-                serverUrl={serverUrl}
+                serverUrl={this.props.serverUrl}
                 userId={userId}
               />
             ) : (
-              <SpotifyAuth serverUrl={serverUrl} />
+              <SpotifyAuth serverUrl={this.props.serverUrl} />
             )}
           </SecondContainer>
           <ThirdContainer authenticated={authenticated}>
