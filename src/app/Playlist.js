@@ -250,7 +250,7 @@ class Playlist extends Component {
       deviceId: undefined,
       currentURI: props.playlist.tracks[0].uri,
       startPlayingMusic: false,
-
+      showPlayButton: true,
       videoIsPlaying: false,
       signTranscript: video.transcript
     };
@@ -342,7 +342,7 @@ class Playlist extends Component {
   startPlayingVideo = () => {
     this.setState({ videoIsPlaying: false });
     setTimeout(() => {
-      this.setState({ videoIsPlaying: true });
+      this.setState({ videoIsPlaying: true, showPlayButton: false });
     }, 5);
   };
 
@@ -350,10 +350,12 @@ class Playlist extends Component {
     const {
       currentURI,
       signTranscript,
-
+      showPlayButton,
       videoIsPlaying
     } = this.state;
     const { playlist } = this.props;
+
+    const showButton = showPlayButton && !videoIsPlaying;
 
     return (
       <PlaylistContainer>
@@ -367,9 +369,9 @@ class Playlist extends Component {
               playing={videoIsPlaying}
               width="100%"
               height="100%"
-              controls={false}
+              controls={true}
             />
-            {!videoIsPlaying ? (
+            {showButton ? (
               <PlayButtonContainer>
                 <FaPlay
                   style={{ cursor: "pointer" }}
@@ -445,12 +447,19 @@ class Playlist extends Component {
   };
 
   renderDesktopStream = () => {
-    const { startPlayingMusic, signTranscript, videoIsPlaying } = this.state;
+    const {
+      startPlayingMusic,
+      signTranscript,
+      videoIsPlaying,
+      showPlayButton
+    } = this.state;
     const { playlist, accessToken } = this.props;
 
     let tracks = playlist.tracks.map(track => {
       return track.uri;
     });
+
+    const showButton = showPlayButton && !videoIsPlaying;
 
     return (
       <PlaylistContainer>
@@ -463,13 +472,13 @@ class Playlist extends Component {
               playing={videoIsPlaying}
               width="100%"
               height="100%"
-              controls={false}
+              controls={true}
               onEnded={() => {
                 this.setState({ startPlayingMusic: true });
               }}
             />
 
-            {!videoIsPlaying ? (
+            {showButton ? (
               <PlayButtonContainer>
                 <FaPlay
                   style={{ cursor: "pointer" }}
