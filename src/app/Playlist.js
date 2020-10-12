@@ -38,6 +38,7 @@ const HoroscopeContainer = styled.div`
   margin-right: 4vw;
   align-items: center;
   justify-content: space-between;
+
   width: 300px;
   font-family: "Merriweather", serif;
 
@@ -67,18 +68,6 @@ const HoroscopeVideoContainer = styled.div`
     width: 250px;
     height: 443px;
   }
-`;
-
-const PlayButtonContainer = styled.div`
-  position: absolute;
-  margin: auto;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 const HoroscopeSign = styled.p`
@@ -112,7 +101,7 @@ const WebPlaylistInfo = styled.div`
 `;
 
 const WebSongDetailsContainer = styled.div`
-  height: 90%;
+  height: 531px;
   overflow-y: scroll;
   border-radius: 10px;
   border: 2px solid #d2a038;
