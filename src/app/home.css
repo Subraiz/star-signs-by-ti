@@ -1,10 +1,11 @@
 .btn {
   background: none;
   margin-left: 20px;
-  font-family: 'Merriweather', serif;
+  font-family: "Merriweather", serif;
   font-weight: 300;
   font-size: 18px;
   color: #000;
+  text-align: center;
   padding: 8px 45px;
   border: 2px solid black;
   transition: ease-out 0.3s;
@@ -19,35 +20,11 @@
   border-radius: 100px;
   overflow: hidden;
   background-color: black;
-  font-family: 'Merriweather', serif;
+  font-family: "Merriweather", serif;
   font-weight: 300;
   font-size: 18px;
   color: #fff;
   cursor: pointer;
-  border: none;
-}
-
-@media (max-width: 415px) {
-  .horoscope-btn-container {
-    display: flex;
-    margin-left: -10px;
-    margin-top: 50%;
-  }
-
-  .save-btn {
-    font-size: 12px;
-    border-radius: 5px;
-  }
-}
-
-.save-btn {
-  padding: 10px 30px;
-  color: white;
-  background-color: black;
-  font-size: 14px;
-  margin-left: 0;
-  font-family: 'Merriweather', serif;
-  font-weight: 300;
   border: none;
 }
 
@@ -57,7 +34,7 @@
 }
 
 .share-button::before {
-  content: '';
+  content: "";
   transition: 0.5s all ease;
   position: absolute;
   top: 0;
@@ -69,7 +46,7 @@
 }
 
 .stream-button::before {
-  content: '';
+  content: "";
   transition: 0.5s all ease;
   position: absolute;
   left: 0;
@@ -95,6 +72,60 @@
   z-index: -1;
 }
 
-.social-media-btn {
+.save-btn {
+  padding: 10px 30px;
+  color: white;
   background-color: black;
+  font-size: 14px;
+  margin-left: 0;
+  font-family: "Merriweather", serif;
+  font-weight: 300;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: ease-out 0.3s;
+  z-index: 1;
+}
+
+.save-btn:hover {
+  color: #000;
+}
+
+.save-btn::before {
+  content: "";
+  transition: 0.5s all ease;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  opacity: 0;
+  background-color: #f8e3b3;
+  border: 1px solid #d2a038;
+}
+
+.save-btn:hover:before {
+  transition: 0.5s all ease;
+  left: 0;
+  right: 0;
+  opacity: 1;
+  z-index: -1;
+}
+
+.react-player {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 415px) {
+  .horoscope-btn-container {
+    display: flex;
+    margin-left: -10px;
+    margin-top: 50%;
+  }
+
+  .save-btn {
+    font-size: 12px;
+    border-radius: 5px;
+  }
 }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import axios from "axios";
 import { Route, Link } from "react-router-dom";
 import Cookies from "universal-cookie";
@@ -15,7 +15,7 @@ import Playlist from "./Playlist";
 import styles from "./home.css";
 
 let serverUrl = "http://localhost:5000/api";
-serverUrl = "https://starsignsbyti.com:4000/api";
+//serverUrl = "https://starsignsbyti.com:4000/api";
 
 const cookies = new Cookies();
 
@@ -65,23 +65,62 @@ const StyledApp = styled.div`
 `;
 
 const FirstContainer = styled.div`
-  width: 20vw;
+  width: 350px;
   margin-left: 25px;
   margin-top: 25px;
 
   .logo-placeholder {
-    max-width: 100%;
+    width: 100%;
     height: 180px;
     background-image: url(${AlbumLogo});
     background-size: contain;
     background-repeat: no-repeat;
+    transition: width 0.25s ease-out;
   }
 
-  p {
+  .intro-text {
     font-family: "Merriweather", serif;
     font-weight: 300;
     font-size: 22px;
   }
+
+  ${props =>
+    props.authenticated &&
+    css`
+      @media (min-width: 415px) and (max-width: 1300px) {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        margin: auto;
+        margin-top: 15px;
+        left: 0;
+        right: 0;
+        width: 225px;
+      }
+
+      @media (min-width: 1300px) and (max-width: 1550px) {
+        width: 250px;
+      }
+    `}
+
+  ${props =>
+    !props.authenticated &&
+    css`
+      @media (min-width: 415px) and (max-width: 720px) {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        margin: auto;
+        margin-top: 15px;
+        left: 0;
+        right: 0;
+        width: 225px;
+
+        .intro-text {
+          display: none;
+        }
+      }
+    `}
 
   @media (max-width: 415px) {
     width: 100vw;
@@ -97,10 +136,8 @@ const FirstContainer = styled.div`
       max-height: 100px;
     }
 
-    p {
-      padding-left: 0px;
-      align-self: center;
-      font-size: 14px;
+    .intro-text {
+      display: none;
     }
   }
 `;
@@ -111,10 +148,10 @@ const SecondContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
   position: absolute;
   left: 25%;
   margin: 0 auto;
+  transition: left 0.5s ease-out;
 
   @media (max-width: 415px) {
     align-items: flex-start;
@@ -124,15 +161,49 @@ const SecondContainer = styled.div`
     position: relative;
     height: auto;
   }
+
+  ${props =>
+    !props.authenticated &&
+    css`
+      @media (min-width: 415px) and (max-width: 720px) {
+        width: 250px;
+      }
+
+      @media (min-width: 729px) and (max-width: 1100px) {
+        position: absolute;
+        left: 50%;
+      }
+    `}
 `;
 
 const ThirdContainer = styled.div`
   margin-top: 25px;
   margin-right: 25px;
+  position: absolute;
+  right: 0;
 
   @media (max-width: 415px) {
     display: none;
   }
+
+  ${props =>
+    !props.authenticated &&
+    css`
+      @media (min-width: 415px) and (max-width: 720px) {
+        display: none;
+      }
+
+      @media (min-width: 720px) and (max-width: 1100px) {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100px;
+        position: absolute;
+        bottom: 30px;
+        left: 0;
+        width: 240px;
+      }
+    `}
 `;
 
 const LoadingContainer = styled.div`
@@ -278,10 +349,10 @@ class App extends Component {
       return (
         <StyledApp>
           <SpinningZodiacWheel />
-          <FirstContainer>
+          <FirstContainer authenticated={authenticated}>
             <div className="logo-placeholder" />
             {!authenticated ? (
-              <p>
+              <p className="intro-text">
                 Hi this is T.I. <br />
                 My new album L.I.B.R.A is <br />
                 available now. <br />
@@ -290,7 +361,7 @@ class App extends Component {
               </p>
             ) : null}
           </FirstContainer>
-          <SecondContainer>
+          <SecondContainer authenticated={authenticated}>
             {authenticated ? (
               <Playlist
                 accessToken={accessToken}
@@ -302,12 +373,18 @@ class App extends Component {
               <SpotifyAuth serverUrl={serverUrl} />
             )}
           </SecondContainer>
-          <ThirdContainer>
+          <ThirdContainer authenticated={authenticated}>
             {!authenticated ? (
-              <button className={"btn share-button"}>Share</button>
+              <a className={"btn share-button"}>Share</a>
             ) : null}
 
-            <button className={"btn stream-button"}>Stream</button>
+            <a
+              className={"btn stream-button"}
+              target="_blank"
+              href={`https://open.spotify.com/playlist/${playlist.playlist_id}`}
+            >
+              Stream
+            </a>
           </ThirdContainer>
         </StyledApp>
       );

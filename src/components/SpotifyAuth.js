@@ -1,8 +1,10 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
-import axios from 'axios';
-import Cookies from 'universal-cookie';
-import { Route, Link } from 'react-router-dom';
+import React, { Component } from "react";
+import styled from "styled-components";
+import axios from "axios";
+import Cookies from "universal-cookie";
+import { Route, Link } from "react-router-dom";
+import ReactPlayer from "react-player";
+import Video from "../assets/video/Lebron.mp4";
 
 const cookies = new Cookies();
 
@@ -10,11 +12,11 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 20vw;
+  width: 337.5px;
 
   .auth-video-container {
     width: 100%;
-    height: 50vh;
+    height: 600px;
     background-color: #f9e3b3;
     border-radius: 10px;
     border: 2px solid #d2a038;
@@ -23,12 +25,26 @@ const Container = styled.div`
   }
 
   p {
-    font-family: 'Merriweather', serif;
+    font-family: "Merriweather", serif;
     font-weight: 300;
     text-align: center;
   }
 
+  .error-message {
+    font-family: "Merriweather", serif;
+    font-weight: 300;
+    text-align: center;
+    color: red;
+    margin: 5px 0 0 0;
+  }
+
   .birthday-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .birthday-input-container {
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -41,7 +57,7 @@ const Container = styled.div`
     border: 1px solid #d2a038;
     padding: 8px 20px;
     margin-right: 2%;
-    font-family: 'Merriweather', serif;
+    font-family: "Merriweather", serif;
     font-weight: 300;
   }
 
@@ -49,7 +65,7 @@ const Container = styled.div`
     padding: 18px 25px;
     background-color: black;
     color: white;
-    font-family: 'Merriweather', serif;
+    font-family: "Merriweather", serif;
     font-weight: 300;
     text-align: center;
     margin-top: 25px;
@@ -57,10 +73,33 @@ const Container = styled.div`
   }
 
   @media (max-width: 415px) {
-    width: 80vw;
+    width: 200px;
+    margin-top: 45px;
 
     .auth-video-container {
-      height: 40vh;
+      height: 355.5px;
+    }
+
+    .error-message {
+      font-size: 14px;
+    }
+
+    .birthday-container {
+      position: absolute;
+      width: 80vw;
+      margin: 0 auto;
+      margin-top: 375px;
+      left: 0;
+      right: 0;
+    }
+  }
+
+  @media (min-width: 415px) and (max-width: 720px) {
+    width: 250px;
+    margin-top: 65px;
+
+    .auth-video-container {
+      height: 444.4px;
     }
   }
 `;
@@ -70,52 +109,156 @@ class SpotifyAuth extends Component {
     super(props);
 
     this.state = {
-      birthMonth: 4,
-      birthDate: 5,
-      birthYear: 1998,
+      birthMonth: "",
+      birthDate: "",
+      birthYear: "",
+      videoIsPlaying: false,
+      errorMessage: undefined,
+      href: undefined
     };
   }
 
   componentWillMount = () => {
-    cookies.set('birthMonth', this.state.birthMonth, { path: '/' });
-    cookies.set('birthDate', this.state.birthDate, { path: '/' });
-    cookies.set('birthYear', this.state.birthYear, { path: '/' });
+    cookies.set("birthMonth", this.state.birthMonth, { path: "/" });
+    cookies.set("birthDate", this.state.birthDate, { path: "/" });
+    cookies.set("birthYear", this.state.birthYear, { path: "/" });
+
+    const checkAge = setInterval(() => {
+      if (
+        this.state.birthMonth &&
+        this.state.birthDate &&
+        this.state.birthYear &&
+        this.state.birthYear.length === 4
+      ) {
+        console.log("check age");
+
+        const today = new Date();
+
+        const birth = new Date(
+          this.state.birthYear,
+          this.state.birthMonth,
+          this.state.birthDate
+        );
+
+        const diffTime = Math.abs(today - birth);
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        const age = diffDays / 365;
+
+        if (age < 21) {
+          this.setState({
+            errorMessage:
+              "You must be at least 14 to continue with this experience."
+          });
+        } else {
+          this.setState({ href: `${this.props.serverUrl}/auth` });
+        }
+      }
+    }, 50);
   };
 
-  handleBirthChange = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
-    cookies.set(e.target.name, e.target.value, { path: '/' });
+  handleBirthChange = e => {
+    const value = e.target.value;
+    const prop = e.target.name;
+    const isNumber = !/\D/.test(value);
+
+    if (isNumber) {
+      if (prop === "birthMonth") {
+        if (value.length > 2) {
+          return false;
+        } else if (value > 12) {
+          return false;
+        } else if (String(value) === "00") {
+          return false;
+        }
+      } else if (prop === "birthDate") {
+        if (value.length > 2) {
+          return false;
+        } else if (value > 31) {
+          return false;
+        } else if (String(value) === "00") {
+          return false;
+        }
+      } else if (prop === "birthYear") {
+        if (value.length > 4) {
+          return false;
+        }
+      }
+
+      this.setState({
+        [prop]: value,
+        errorMessage: undefined
+      });
+      cookies.set(prop, value, { path: "/" });
+    } else {
+      this.setState({
+        errorMessage: "Please enter a number for month, day, and year."
+      });
+    }
+
+    if (!this.state.videoIsPlaying) {
+      this.setState({ videoIsPlaying: true });
+    }
+  };
+
+  renderErrorMessage = () => {
+    const { errorMessage } = this.state;
+
+    if (errorMessage !== undefined) {
+      return <p className="error-message">{errorMessage}</p>;
+    }
   };
 
   render() {
-    const { birthMonth, birthDate, birthYear } = this.state;
+    const {
+      birthMonth,
+      birthDate,
+      birthYear,
+      videoIsPlaying,
+      errorMessage,
+      href
+    } = this.state;
     return (
       <Container>
-        <div className="auth-video-container"></div>
-        <p>Select your birthdate and get your horoscope.</p>
-        <div className="birthday-container">
-          <input
-            placeholder="Month"
-            name="birthMonth"
-            value={birthMonth}
-            onChange={(e) => this.handleBirthChange(e)}
-          />
-          <input
-            placeholder="Day"
-            name="birthDate"
-            value={birthDate}
-            onChange={(e) => this.handleBirthChange(e)}
-          />
-          <input
-            placeholder="Year"
-            name="birthYear"
-            value={birthYear}
-            onChange={(e) => this.handleBirthChange(e)}
+        <div className="auth-video-container">
+          <ReactPlayer
+            className="react-player"
+            url={Video}
+            style={{}}
+            autoPlay={true}
+            playing={videoIsPlaying}
+            width="100%"
+            height="100%"
+            controls={false}
           />
         </div>
-        <a href={`${this.props.serverUrl}/auth`}>Connect to Spotify</a>
+
+        <div className="birthday-container">
+          <p>Select your birthdate and get your horoscope.</p>
+          <div className="birthday-input-container">
+            <input
+              placeholder="Month"
+              name="birthMonth"
+              value={birthMonth}
+              onChange={e => this.handleBirthChange(e)}
+            />
+            <input
+              placeholder="Day"
+              name="birthDate"
+              value={birthDate}
+              onChange={e => this.handleBirthChange(e)}
+            />
+            <input
+              placeholder="Year"
+              name="birthYear"
+              value={birthYear}
+              onChange={e => this.handleBirthChange(e)}
+            />
+          </div>
+          {this.renderErrorMessage()}
+          <a className="save-btn" href={href}>
+            Connect to Spotify
+          </a>
+        </div>
       </Container>
     );
   }

@@ -4,7 +4,10 @@ import { isMobile } from "react-device-detect";
 import { FacebookShareButton, TwitterShareButton } from "react-share";
 import SpotifyPlayer, { STATUS } from "react-spotify-web-playback";
 import axios from "axios";
+import { FaPlay } from "react-icons/fa";
+import ReactPlayer from "react-player";
 import AudioRecordings from "./AudioRecordings";
+import Video from "../assets/video/Lebron.mp4";
 
 const PlaylistContainer = styled.div`
   background: none;
@@ -23,20 +26,25 @@ const PlaylistContainer = styled.div`
     align-items: center;
     position: absolute;
   }
+
+  @media (min-width: 416px) and (max-width: 1300px) {
+    align-items: flex-end;
+    bottom: 20px;
+  }
 `;
 
 const HoroscopeContainer = styled.div`
   display: flex;
-  width: 20vw;
   flex-direction: column;
   height: 80vh;
   margin-right: 4vw;
   justify-content: space-between;
-
+  position: relative;
+  width: 300px;
   font-family: "Merriweather", serif;
 
   @media (max-width: 415px) {
-    width: 80vw;
+    width: 300px;
     margin-right: 0;
     justify-content: flex-start;
     margin-top: 15px;
@@ -45,17 +53,29 @@ const HoroscopeContainer = styled.div`
 
 const HoroscopeVideoContainer = styled.div`
   width: 100%;
-  height: 600px;
+  height: 533px;
   background-color: #f8e3b3;
   overflow: hidden;
   border-radius: 10px;
   border: 2px solid #d2a038;
   box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
 
   @media (max-width: 415px) {
-    height: 300px;
-    min-height: 200px;
+    height: 533px;
   }
+`;
+
+const PlayButtonContainer = styled.div`
+  position: absolute;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const HoroscopeSign = styled.p`
@@ -84,6 +104,7 @@ const WebPlaylistInfo = styled.div`
   @media (max-width: 415px) {
     width: 80vw;
     height: auto;
+    margin-top: 25px;
   }
 `;
 
@@ -105,21 +126,20 @@ const WebSongDetailsContainer = styled.div`
 const CurrentSong = styled.p`
   color: black;
   font-weight: 700;
-  padding-left: 10px;
-  border-bottom: 1px solid #000;
-  margin: 10px 15px;
+`;
 
-  padding: 5px 10px;
+const SongContainer = styled.div`
+  display: flex;
+  width: 90%;
+  margin-left: 5%;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #000;
 `;
 
 const Song = styled.p`
   color: #474747;
   font-weight: 400;
-  padding-left: 10px;
-  border-bottom: 1px solid #000;
-  margin: 10px 15px;
-
-  padding: 5px 10px;
 `;
 
 const ZodiacSignContainer = styled.div`
@@ -138,7 +158,6 @@ const ZodiacSign = styled.p`
   text-transform: capitalize;
 
   @media (max-width: 415px) {
-    font-weight: 400;
     border: 0px solid black;
   }
 `;
@@ -161,6 +180,10 @@ const ShareContainer = styled.div`
   justify-content: space-between;
   margin-bottom: 15px;
   width: 100%;
+
+  @media (max-width: 1300px) {
+    flex-direction: column-reverse;
+  }
 `;
 
 const SocialMediaIcon = styled.div`
@@ -172,6 +195,11 @@ const SocialMediaIcon = styled.div`
   align-items: center;
   justify-content: center;
   margin-left: 7px;
+  transition: ease-out 0.3s;
+
+  :hover {
+    background-color: #d2a038;
+  }
 
   .icon-text {
     color: white;
@@ -186,10 +214,24 @@ const SocialMediaContainer = styled.div`
   align-items: center;
 
   .share-text {
-    font-family: "Merriweather", serif;
-
+    font-family: "Merriweather", serif
     margin: 0 25px 0 0;
   }
+
+  @media (min-width: 416px) and (max-width: 675px) {
+    justify-content: center;
+
+    .share-text {
+      display: none;
+    }
+
+  }
+
+  @media (max-width: 1300px) {
+    margin-bottom: 10px;
+  }
+
+
 `;
 
 class Playlist extends Component {
@@ -200,52 +242,19 @@ class Playlist extends Component {
     const audio =
       AudioRecordings[sign.toLowerCase()][Math.floor(Math.random() * 2)];
 
-    this.audio = new Audio(audio);
+    this.audio = new Audio(audio.track);
 
     this.state = {
       deviceId: undefined,
-      mobileIsAcitive: false,
       currentURI: props.playlist.tracks[0].uri,
       startPlayingMusic: false,
-      playAudio: false
+      recordingAudioIsPlaying: false,
+      videoIsPlaying: false,
+      signTranscript: audio.transcript
     };
   }
 
-  componentWillMount = async () => {
-    const { serverUrl, accessToken, playlist } = this.props;
-
-    if (isMobile) {
-      let tracks = playlist.tracks.map(track => {
-        return track.uri;
-      });
-
-      const searchForDevice = setInterval(async () => {
-        const deviceId = await this.getMobileDeviceId();
-        if (deviceId !== undefined) {
-          let url = serverUrl + "/player/start";
-
-          await axios({
-            method: "POST",
-            url,
-            data: {
-              device_id: deviceId,
-              access_token: accessToken,
-              uris: tracks
-            }
-          })
-            .then(async res => {
-              console.log(res.data);
-              this.trackSpotifyState();
-              this.setState({ mobileIsAcitive: true });
-              clearInterval(searchForDevice);
-            })
-            .catch(err => {
-              this.setState({ mobileIsAcitive: false });
-            });
-        }
-      }, 1000);
-    }
-  };
+  componentWillMount = async () => {};
 
   componentDidMount = () => {
     try {
@@ -255,11 +264,15 @@ class Playlist extends Component {
     }
 
     this.audio.addEventListener("ended", () => {
-      this.setState({ audioIsPlaying: false });
-      this.setState({ startPlayingMusic: true });
+      this.setState({
+        startPlayingMusic: true
+      });
     });
     this.audio.addEventListener("play", () => {
-      this.setState({ audioIsPlaying: true });
+      this.setState({
+        recordingAudioIsPlaying: true,
+        videoIsPlaying: true
+      });
     });
   };
 
@@ -327,72 +340,128 @@ class Playlist extends Component {
 
     return playlist.tracks.map((song, i) => {
       if (song.uri === currentURI) {
-        return <CurrentSong key={i}>{song.name}</CurrentSong>;
+        return (
+          <SongContainer key={i}>
+            <CurrentSong>{song.name}</CurrentSong>
+            <FaPlay />
+          </SongContainer>
+        );
       } else {
-        return <Song key={i}>{song.name}</Song>;
+        return (
+          <SongContainer key={i}>
+            <Song>{song.name}</Song>
+            <FaPlay />
+          </SongContainer>
+        );
       }
     });
   };
 
-  openSpotifyApp = async () => {
-    const { playlist } = this.props;
-    let link = `https://open.spotify.com/playlist/${playlist.playlist_id}`;
-    window.location.href = link;
-  };
-
   renderMobileStream = () => {
-    const { mobileIsAcitive, currentURI } = this.state;
+    const {
+      currentURI,
+      signTranscript,
+      recordingAudioIsPlaying,
+      videoIsPlaying
+    } = this.state;
     const { playlist } = this.props;
 
-    if (mobileIsAcitive) {
-      return (
-        <PlaylistContainer>
-          <HoroscopeContainer>
-            <HoroscopeSign>TI HOROSCOPE APP</HoroscopeSign>
-            <HoroscopeVideoContainer></HoroscopeVideoContainer>
-            <HoroscopeSign>{playlist.sign}</HoroscopeSign>
-            <HoroscopeText>
-              {`  It may seem like everyone around you is happy and getting what
-              they want while you're stuck in the trenches, Leo. Don't compare
-              yourself to other people and make judgments based on outside
-              appearances. The truth of the matter is that they're most likely
-              only looking at the immediate future and experiencing short-term
-              pleasures. You, however, have your sights set on the long-term and
-              will probably be much better off.`}
-            </HoroscopeText>
-          </HoroscopeContainer>
+    return (
+      <PlaylistContainer>
+        <HoroscopeContainer>
+          <HoroscopeSign>TI HOROSCOPE APP</HoroscopeSign>
+          <HoroscopeVideoContainer>
+            <ReactPlayer
+              className="react-player"
+              url={Video}
+              style={{}}
+              playing={videoIsPlaying}
+              width="100%"
+              height="100%"
+              controls={false}
+            />
+            {!recordingAudioIsPlaying ? (
+              <PlayButtonContainer>
+                <FaPlay
+                  style={{ cursor: "pointer" }}
+                  size={48}
+                  onClick={() => {
+                    this.audio.play();
+                  }}
+                />
+              </PlayButtonContainer>
+            ) : null}
+          </HoroscopeVideoContainer>
+          <HoroscopeSign>{playlist.sign}</HoroscopeSign>
+          <HoroscopeText>{signTranscript}</HoroscopeText>
+        </HoroscopeContainer>
 
-          <WebPlaylistInfo>
-            <ZodiacSignContainer>
-              <ZodiacSign>{`${playlist.sign} Horoscope Playlist`}</ZodiacSign>
-              <button className="btn save-btn">Save to Spotify</button>
-            </ZodiacSignContainer>
-            <WebSongDetailsContainer>
-              {this.renderPlaylistSongNames()}
-            </WebSongDetailsContainer>
+        <WebPlaylistInfo>
+          <ZodiacSignContainer>
+            <ZodiacSign>{`${playlist.sign} Horoscope Playlist`}</ZodiacSign>
+          </ZodiacSignContainer>
 
-            <PlayerContainer></PlayerContainer>
-          </WebPlaylistInfo>
-        </PlaylistContainer>
-      );
-    } else {
-      return (
-        <div className="horoscope-btn-container">
-          <button
-            className="btn share-button horoscope-button"
-            onClick={async () => {
-              this.openSpotifyApp();
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              marginBottom: 20
             }}
           >
-            Get My Horoscope
+            <FacebookShareButton
+              url={`https://www.starsignsbyti.com/playlist/${playlist.sign}`}
+              quote={"Stream The Libra Now"}
+              hashtag="#TheLibra"
+              className="social-media-btn"
+            >
+              <SocialMediaIcon>
+                <p className="icon-text">F</p>
+              </SocialMediaIcon>
+            </FacebookShareButton>
+            <TwitterShareButton
+              url={`https://www.starsignsbyti.com/playlist/${playlist.sign}`}
+              title={`Get your personalized horoscope from T.I.`}
+              hashtag={["#TheLibra"]}
+              related={["tip"]}
+              className="social-media-btn"
+            >
+              <SocialMediaIcon>
+                <p className="icon-text">T</p>
+              </SocialMediaIcon>
+            </TwitterShareButton>
+          </div>
+
+          <WebSongDetailsContainer>
+            <iframe
+              src={`https://open.spotify.com/embed/playlist/${playlist.playlist_id}`}
+              width="100%"
+              height="100%"
+              frameBorder="0"
+              allow="encrypted-media"
+            ></iframe>
+          </WebSongDetailsContainer>
+          <button
+            className="btn save-btn"
+            onClick={() => {
+              this.saveSpotifyPlaylist();
+            }}
+          >
+            Save to Spotify
           </button>
-        </div>
-      );
-    }
+
+          <PlayerContainer></PlayerContainer>
+        </WebPlaylistInfo>
+      </PlaylistContainer>
+    );
   };
 
   renderDesktopStream = () => {
-    const { startPlayingMusic } = this.state;
+    const {
+      startPlayingMusic,
+      recordingAudioIsPlaying,
+      signTranscript,
+      videoIsPlaying
+    } = this.state;
     const { playlist, accessToken } = this.props;
 
     let tracks = playlist.tracks.map(track => {
@@ -402,17 +471,31 @@ class Playlist extends Component {
     return (
       <PlaylistContainer>
         <HoroscopeContainer>
-          <HoroscopeVideoContainer></HoroscopeVideoContainer>
+          <HoroscopeVideoContainer>
+            <ReactPlayer
+              className="react-player"
+              url={Video}
+              style={{}}
+              playing={videoIsPlaying}
+              width="100%"
+              height="100%"
+              controls={false}
+            />
+            {!recordingAudioIsPlaying ? (
+              <PlayButtonContainer>
+                <FaPlay
+                  style={{ cursor: "pointer" }}
+                  size={48}
+                  onClick={() => {
+                    this.audio.play();
+                  }}
+                />
+              </PlayButtonContainer>
+            ) : null}
+          </HoroscopeVideoContainer>
+
           <HoroscopeSign>{playlist.sign}</HoroscopeSign>
-          <HoroscopeText>
-            {`  It may seem like everyone around you is happy and getting what
-              they want while you're stuck in the trenches, Leo. Don't compare
-              yourself to other people and make judgments based on outside
-              appearances. The truth of the matter is that they're most likely
-              only looking at the immediate future and experiencing short-term
-              pleasures. You, however, have your sights set on the long-term and
-              will probably be much better off.`}
-          </HoroscopeText>
+          <HoroscopeText>{signTranscript}</HoroscopeText>
         </HoroscopeContainer>
 
         <WebPlaylistInfo>
@@ -428,11 +511,10 @@ class Playlist extends Component {
               <button
                 className="save-btn"
                 onClick={() => {
-                  this.audio.play();
                   this.saveSpotifyPlaylist();
                 }}
               >
-                Play Horoscope
+                Save Playlist
               </button>
               <SocialMediaContainer>
                 <p className="share-text">Share Playlist</p>
