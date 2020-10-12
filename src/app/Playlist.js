@@ -339,6 +339,13 @@ class Playlist extends Component {
     });
   };
 
+  startPlayingVideo = () => {
+    this.setState({ videoIsPlaying: false });
+    setTimeout(() => {
+      this.setState({ videoIsPlaying: true });
+    }, 5);
+  };
+
   renderMobileStream = () => {
     const {
       currentURI,
@@ -368,7 +375,7 @@ class Playlist extends Component {
                   style={{ cursor: "pointer" }}
                   size={48}
                   onClick={() => {
-                    this.setState({ videoIsPlaying: true });
+                    this.startPlayingVideo();
                   }}
                 />
               </PlayButtonContainer>
@@ -461,13 +468,14 @@ class Playlist extends Component {
                 this.setState({ startPlayingMusic: true });
               }}
             />
+
             {!videoIsPlaying ? (
               <PlayButtonContainer>
                 <FaPlay
                   style={{ cursor: "pointer" }}
                   size={48}
                   onClick={() => {
-                    this.setState({ videoIsPlaying: true });
+                    this.startPlayingVideo();
                   }}
                 />
               </PlayButtonContainer>
