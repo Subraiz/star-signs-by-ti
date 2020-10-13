@@ -173,6 +173,7 @@ const ThirdContainer = styled.div`
   margin-right: 25px;
   position: absolute;
   right: 0;
+  display: flex;
 
   @media (max-width: 500px) {
     display: none;

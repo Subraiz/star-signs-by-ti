@@ -61,6 +61,7 @@ const HoroscopeVideoContainer = styled.div`
   border: 2px solid #d2a038;
   box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
   position: relative;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
 
   @media (max-width: 500px) {
     height: 531px;

@@ -14,11 +14,12 @@ const Container = styled.div`
 
   .auth-video-container {
     width: 100%;
-    height: 600px;
+    height: 598px;
     background-color: #f9e3b3;
     border-radius: 10px;
     border: 2px solid #d2a038;
     overflow: hidden;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
     box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
   }
 
@@ -32,7 +33,7 @@ const Container = styled.div`
     font-family: "Merriweather", serif;
     font-weight: 300;
     text-align: center;
-    color: red;
+    color: black;
     margin: 5px 0 0 0;
   }
 
