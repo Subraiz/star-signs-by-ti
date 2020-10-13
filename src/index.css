@@ -44,6 +44,11 @@ u {
   text-decoration: none;
 }
 
+::-webkit-scrollbar {
+  width: 0px; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
+}
+
 @media (max-width: 500px) {
   html {
     background-image: url("./assets/ZodiacWheel.png");

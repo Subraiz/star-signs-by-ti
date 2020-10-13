@@ -178,6 +178,7 @@ const ShareContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 15px;
+
   width: 100%;
 
   @media (max-width: 1300px) {
