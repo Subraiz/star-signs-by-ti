@@ -39,6 +39,7 @@ const HoroscopeContainer = styled.div`
   flex-direction: column;
   margin-right: 4vw;
   align-items: center;
+  height: 750px;
   justify-content: space-between;
 
   width: 253px;
@@ -326,7 +327,6 @@ class Playlist extends Component {
     return (
       <PlaylistContainer>
         <HoroscopeContainer>
-          <HoroscopeSign>TI HOROSCOPE APP</HoroscopeSign>
           <HoroscopeVideoContainer>
             <ReactPlayer
               className="react-player"
@@ -344,14 +344,37 @@ class Playlist extends Component {
 
         <WebPlaylistInfo>
           <ZodiacSignContainer>
-            <ZodiacSign>{`${playlist.sign} Horoscope Playlist`}</ZodiacSign>
+            <ZodiacSign
+              style={{ textAlign: "center" }}
+            >{`${playlist.sign} Horoscope Playlist`}</ZodiacSign>
           </ZodiacSignContainer>
+
+          <WebSongDetailsContainer>
+            <iframe
+              title="Spotify Web Player"
+              src={`https://open.spotify.com/embed/playlist/${playlist.playlist_id}`}
+              width="100%"
+              height="100%"
+              frameBorder="0"
+              allow="encrypted-media"
+            ></iframe>
+          </WebSongDetailsContainer>
+          <button
+            className="btn save-btn"
+            style={{ fontSize: 16 }}
+            onClick={() => {
+              this.saveSpotifyPlaylist();
+            }}
+          >
+            Save to Spotify
+          </button>
 
           <div
             style={{
               display: "flex",
               justifyContent: "center",
-              marginBottom: 20
+              marginBottom: 40,
+              marginTop: 30
             }}
           >
             <FacebookShareButton
@@ -385,25 +408,6 @@ class Playlist extends Component {
               </a>
             </SocialMediaIcon>
           </div>
-
-          <WebSongDetailsContainer>
-            <iframe
-              title="Spotify Web Player"
-              src={`https://open.spotify.com/embed/playlist/${playlist.playlist_id}`}
-              width="100%"
-              height="100%"
-              frameBorder="0"
-              allow="encrypted-media"
-            ></iframe>
-          </WebSongDetailsContainer>
-          <button
-            className="btn save-btn"
-            onClick={() => {
-              this.saveSpotifyPlaylist();
-            }}
-          >
-            Save to Spotify
-          </button>
 
           <PlayerContainer></PlayerContainer>
         </WebPlaylistInfo>

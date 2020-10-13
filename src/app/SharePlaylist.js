@@ -88,9 +88,9 @@ const FirstContainer = styled.div`
     margin-top: 15px;
 
     .logo-placeholder {
-      width: 50vw;
       margin: auto;
-      max-height: 100px;
+      width: 60vw;
+      height: 120px;
     }
   }
 `;
@@ -350,30 +350,36 @@ class SharePlaylist extends Component {
             </HoroscopeVideoContainer>
             <p className="zodiac-sign">{playlist.sign}</p>
             <SocialMediaContainer>
-              <p className="share-text">Share Playlist</p>
-              <div>
-                <FacebookShareButton
-                  url={`https://www.starsignsbyti.com/playlist/${playlist.sign}`}
-                  quote={"Stream The Libra Now"}
-                  hashtag="#TheLibra"
-                  className="social-media-btn"
+              <FacebookShareButton
+                url={`https://www.starsignsbyti.com/playlist/${playlist.sign}`}
+                quote={"Stream The Libra Now"}
+                hashtag="#TheLibra"
+                className="social-media-btn"
+              >
+                <SocialMediaIcon>
+                  <p className="icon-text">F</p>
+                </SocialMediaIcon>
+              </FacebookShareButton>
+              <TwitterShareButton
+                url={`https://www.starsignsbyti.com/playlist/${playlist.sign}`}
+                title={`Get your personalized horoscope from T.I.`}
+                hashtag={["#TheLibra"]}
+                related={["tip"]}
+                className="social-media-btn"
+              >
+                <SocialMediaIcon>
+                  <p className="icon-text">T</p>
+                </SocialMediaIcon>
+              </TwitterShareButton>
+              <SocialMediaIcon>
+                <a
+                  href="instagram://story-camera"
+                  className="icon-text"
+                  rel="noopener noreferrer"
                 >
-                  <SocialMediaIcon>
-                    <p className="icon-text">F</p>
-                  </SocialMediaIcon>
-                </FacebookShareButton>
-                <TwitterShareButton
-                  url={`https://www.starsignsbyti.com/playlist/${playlist.sign}`}
-                  title={`Get your personalized horoscope from T.I.`}
-                  hashtag={["#TheLibra"]}
-                  related={["tip"]}
-                  className="social-media-btn"
-                >
-                  <SocialMediaIcon>
-                    <p className="icon-text">T</p>
-                  </SocialMediaIcon>
-                </TwitterShareButton>
-              </div>
+                  I
+                </a>
+              </SocialMediaIcon>
             </SocialMediaContainer>
           </SecondContainer>
 

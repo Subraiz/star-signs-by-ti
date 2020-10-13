@@ -122,9 +122,9 @@ const FirstContainer = styled.div`
     margin-top: 15px;
 
     .logo-placeholder {
-      width: 50vw;
+      width: 60vw;
+      height: 140px;
       margin: auto;
-      max-height: 100px;
     }
 
     .intro-text {
