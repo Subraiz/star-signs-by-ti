@@ -126,7 +126,9 @@ const SecondContainer = styled.div`
   @media (max-width: 415px) {
     align-items: center;
     width: 300px;
+
     margin: 0 auto;
+    margin-top: -30px;
     left: 0;
     position: relative;
     justify-content: center;
@@ -181,13 +183,14 @@ const SocialMediaIcon = styled.div`
   justify-content: center;
   margin: 0 8px;
   transition: ease-out 0.3s;
+  color: white;
 
   :hover {
-    background-color: #d2a038;
+    background-color: #f8e3b3;
+    color: black;
   }
 
   .icon-text {
-    color: white;
     font-family: "Merriweather", serif;
     margin: 0 auto;
   }

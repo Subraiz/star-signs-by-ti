@@ -198,13 +198,14 @@ const SocialMediaIcon = styled.div`
   justify-content: center;
   margin-left: 7px;
   transition: ease-out 0.3s;
+  color: white;
 
   :hover {
-    background-color: #d2a038;
+    background-color: #f8e3b3;
+    color: black;
   }
 
   .icon-text {
-    color: white;
     font-family: "Merriweather", serif;
     margin: 0 auto;
   }
