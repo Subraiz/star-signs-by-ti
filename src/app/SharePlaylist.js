@@ -190,6 +190,14 @@ const SocialMediaIcon = styled.div`
     color: black;
   }
 
+  a {
+    color: white;
+
+    :hover {
+      color: black;
+    }
+  }
+
   .icon-text {
     font-family: "Merriweather", serif;
     margin: 0 auto;
