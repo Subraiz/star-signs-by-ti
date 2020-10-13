@@ -367,9 +367,11 @@ class App extends Component {
             )}
           </SecondContainer>
           <ThirdContainer authenticated={authenticated}>
-            {!authenticated ? (
-              <button className={"btn share-button"}>Share</button>
-            ) : null}
+            {/*!authenticated ? (
+              <a href="" className={"btn stream-button"}>
+                Share
+              </a>
+            ) : null*/}
 
             <a
               className={"btn stream-button"}
