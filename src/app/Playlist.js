@@ -14,6 +14,8 @@ const PlaylistContainer = styled.div`
   background: none;
   position: absolute;
   display: flex;
+  align-items: center;
+  justify-content: flex-start;
 
   @media (max-width: 500px) {
     flex-direction: column;
@@ -39,7 +41,7 @@ const HoroscopeContainer = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  width: 300px;
+  width: 253px;
   font-family: "Merriweather", serif;
 
   @media (max-width: 500px) {
@@ -51,11 +53,11 @@ const HoroscopeContainer = styled.div`
 `;
 
 const HoroscopeVideoContainer = styled.div`
-  width: 300px;
-  height: 531px;
+  width: 100%;
+  height: 448px;
   background-color: #f8e3b3;
   overflow: hidden;
-  border-radius: 20px;
+  border-radius: 10px;
   border: 2px solid #d2a038;
   box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
   position: relative;
@@ -87,9 +89,9 @@ const HoroscopeText = styled.p`
 
 const WebPlaylistInfo = styled.div`
   display: flex;
-  width: 30vw;
+  width: 32vw;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   height: 80vh;
   font-family: "Merriweather", serif;
 
@@ -101,7 +103,7 @@ const WebPlaylistInfo = styled.div`
 `;
 
 const WebSongDetailsContainer = styled.div`
-  height: 531px;
+  height: 600px;
   overflow-y: scroll;
   border-radius: 10px;
   border: 2px solid #d2a038;
@@ -148,6 +150,7 @@ const ZodiacSign = styled.p`
   margin: 15px 0;
   padding-bottom: 5px;
   text-transform: capitalize;
+  font-size: 24px;
 
   @media (max-width: 500px) {
     border: 0px solid black;
@@ -305,21 +308,12 @@ class Playlist extends Component {
     const { currentSong } = this.state;
 
     return playlist.tracks.map((song, i) => {
-      if (currentSong.includes(song.name)) {
-        return (
-          <SongContainer key={i}>
-            <CurrentSong>{song.name}</CurrentSong>
-            <FaPlay />
-          </SongContainer>
-        );
-      } else {
-        return (
-          <SongContainer key={i}>
-            <Song>{song.name}</Song>
-            <FaPlay />
-          </SongContainer>
-        );
-      }
+      return (
+        <SongContainer key={i}>
+          <Song>{song.name}</Song>
+          <FaPlay />
+        </SongContainer>
+      );
     });
   };
 
@@ -495,7 +489,7 @@ class Playlist extends Component {
                 </div>
               </SocialMediaContainer>
             </ShareContainer>
-            <Player>
+            {/* <Player>
               <SpotifyPlayer
                 name={"Spotify Web (The Libra)"}
                 token={accessToken}
@@ -515,7 +509,7 @@ class Playlist extends Component {
                   trackArtistColor: "#d2a038"
                 }}
               />
-            </Player>
+            </Player> */}
           </PlayerContainer>
         </WebPlaylistInfo>
       </PlaylistContainer>
