@@ -5,7 +5,7 @@ import { withRouter } from "react-router";
 import { FacebookShareButton, TwitterShareButton } from "react-share";
 import ZodiacWheel from "../assets/Wheel.png";
 import ReactPlayer from "react-player";
-import Video from "../assets/video/Lebron.mp4";
+import Video from "../assets/video/test.mov";
 import AlbumLogo from "../assets/AlbumLogo.png";
 import Signs from "./Signs";
 
@@ -16,7 +16,7 @@ const StyledApp = styled.div`
   flex-direction: row;
   justify-content: space-between;
 
-  @media (max-width: 415px) {
+  @media (max-width: 550px) {
     flex-direction: column;
     overflow: scroll;
     justify-content: flex-start;
@@ -68,7 +68,7 @@ const FirstContainer = styled.div`
     transition: width 0.25s ease-out;
   }
 
-  @media (min-width: 415px) and (max-width: 720px) {
+  @media (min-width: 550px) and (max-width: 920px) {
     position: absolute;
     display: flex;
     align-items: center;
@@ -79,7 +79,7 @@ const FirstContainer = styled.div`
     width: 175px;
   }
 
-  @media (max-width: 415px) {
+  @media (max-width: 550px) {
     width: 100vw;
     margin-left: 0;
     display: flex;
@@ -110,7 +110,7 @@ const SecondContainer = styled.div`
   .intro-text {
     font-family: "Merriweather", serif;
     text-align: center;
-    width: 300px;
+    width: 500px;
     font-size: 18px;
   }
 
@@ -123,42 +123,52 @@ const SecondContainer = styled.div`
     text-transform: capitalize;
   }
 
-  @media (max-width: 415px) {
+  @media (max-width: 550px) {
     align-items: center;
     width: 300px;
 
     margin: 0 auto;
-    margin-top: -30px;
+    margin-top: -110px;
     left: 0;
     position: relative;
     justify-content: center;
+
+    .intro-text {
+      width: 90vw;
+    }
   }
 
-  @media (min-width: 415px) and (max-width: 720px) {
+  @media (min-width: 550px) and (max-width: 920px) {
     width: 250px;
     left: 0;
     right: 0;
 
     .intro-text {
-      display: none;
+      width: 500px;
     }
   }
 
-  @media (min-width: 729px) and (max-width: 1100px) {
+  @media (min-width: 920px) and (max-width: 1260px) {
     position: absolute;
-    left: 50%;
+    right: 50px;
+    left: auto;
   }
 `;
 
 const HoroscopeVideoContainer = styled.div`
-  width: 300px;
-  height: 531px;
+  width: 500px;
+  height: 500px;
   background-color: #f8e3b3;
   overflow: hidden;
   border-radius: 10px;
   border: 2px solid #d2a038;
   box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
   position: relative;
+
+  @media (max-width: 550px) {
+    height: 90vw;
+    width: 90vw;
+  }
 `;
 
 const PlayButtonContainer = styled.div`

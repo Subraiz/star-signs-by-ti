@@ -49,14 +49,14 @@ const StyledApp = styled.div`
   flex-direction: row;
   justify-content: space-between;
 
-  @media (max-width: 500px) {
+  @media (max-width: 660px) {
     flex-direction: column;
     justify-content: flex-start;
   }
 `;
 
 const FirstContainer = styled.div`
-  width: 350px;
+  width: 280px;
   margin-left: 25px;
   margin-top: 25px;
 
@@ -78,7 +78,7 @@ const FirstContainer = styled.div`
   ${props =>
     props.authenticated &&
     css`
-      @media (min-width: 501px) and (max-width: 1300px) {
+      @media (min-width: 660px) and (max-width: 1300px) {
         position: absolute;
         display: flex;
         align-items: center;
@@ -97,7 +97,7 @@ const FirstContainer = styled.div`
   ${props =>
     !props.authenticated &&
     css`
-      @media (min-width: 501px) and (max-width: 720px) {
+      @media (min-width: 660px) and (max-width: 950px) {
         position: absolute;
         display: flex;
         align-items: center;
@@ -113,7 +113,7 @@ const FirstContainer = styled.div`
       }
     `}
 
-  @media (max-width: 500px) {
+  @media (max-width: 660px) {
     width: 100vw;
     margin-left: 0;
     display: flex;
@@ -144,7 +144,7 @@ const SecondContainer = styled.div`
   margin: 0 auto;
   transition: left 0.5s ease-out;
 
-  @media (max-width: 500px) {
+  @media (max-width: 660px) {
     align-items: flex-start;
     width: 100vw;
     margin: 0 auto;
@@ -155,15 +155,16 @@ const SecondContainer = styled.div`
   ${props =>
     !props.authenticated &&
     css`
-      @media (min-width: 501px) and (max-width: 720px) {
+      @media (min-width: 660px) and (max-width: 950px) {
         width: 250px;
         left: 0;
         right: 0;
       }
 
-      @media (min-width: 729px) and (max-width: 1100px) {
+      @media (min-width: 950px) and (max-width: 1230px) {
         position: absolute;
-        left: 50%;
+        left: auto;
+        right: 8%;
       }
     `}
 `;
@@ -182,11 +183,11 @@ const ThirdContainer = styled.div`
   ${props =>
     !props.authenticated &&
     css`
-      @media (min-width: 501px) and (max-width: 720px) {
+      @media (min-width: 501px) and (max-width: 950px) {
         display: none;
       }
 
-      @media (min-width: 720px) and (max-width: 1100px) {
+      @media (min-width: 950px) and (max-width: 1230px) {
         display: flex;
         flex-direction: column;
         justify-content: space-between;

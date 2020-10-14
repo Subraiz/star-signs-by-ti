@@ -8,7 +8,7 @@ import axios from "axios";
 import { FaPlay } from "react-icons/fa";
 import ReactPlayer from "react-player";
 import VideoRecordings from "./VideoRecordings";
-import Video from "../assets/video/Lebron.mp4";
+import Video from "../assets/video/test.mov";
 
 const PlaylistContainer = styled.div`
   background: none;
@@ -17,7 +17,7 @@ const PlaylistContainer = styled.div`
   align-items: center;
   justify-content: flex-start;
 
-  @media (max-width: 500px) {
+  @media (max-width: 660px) {
     flex-direction: column;
     height: auto;
     justify-content: flex-start;
@@ -28,9 +28,9 @@ const PlaylistContainer = styled.div`
     margin: 0 auto;
   }
 
-  @media (min-width: 501px) and (max-width: 1300px) {
+  @media (min-width: 660px) and (max-width: 1300px) {
     align-items: flex-start;
-    bottom: 20px;
+    margin-top: 40px;
   }
 `;
 
@@ -39,14 +39,12 @@ const HoroscopeContainer = styled.div`
   flex-direction: column;
   margin-right: 4vw;
   align-items: center;
-  height: 750px;
-  justify-content: space-between;
-
-  width: 253px;
+  justify-content: center;
+  width: 400px;
   font-family: "Merriweather", serif;
 
-  @media (max-width: 500px) {
-    width: 300px;
+  @media (max-width: 660px) {
+    width: 90vw;
     margin-right: 0;
     justify-content: flex-start;
     margin-top: 15px;
@@ -54,8 +52,8 @@ const HoroscopeContainer = styled.div`
 `;
 
 const HoroscopeVideoContainer = styled.div`
-  width: 100%;
-  height: 448px;
+  width: 400px;
+  height: 400px;
   background-color: #f8e3b3;
   overflow: hidden;
   border-radius: 10px;
@@ -64,13 +62,9 @@ const HoroscopeVideoContainer = styled.div`
   position: relative;
   -webkit-mask-image: -webkit-radial-gradient(white, black);
 
-  @media (max-width: 500px) {
-    height: 531px;
-  }
-
-  @media (min-width: 501px) and (max-width: 1300px) {
-    width: 250px;
-    height: 443px;
+  @media (max-width: 660px) {
+    height: 90vw;
+    width: 90vw;
   }
 `;
 
@@ -94,25 +88,25 @@ const WebPlaylistInfo = styled.div`
   width: 32vw;
   flex-direction: column;
   justify-content: center;
-  height: 80vh;
+  height: 65vh;
   font-family: "Merriweather", serif;
 
-  @media (max-width: 500px) {
-    width: 80vw;
+  @media (max-width: 660px) {
+    width: 90vw;
     height: auto;
     margin-top: 25px;
   }
 `;
 
 const WebSongDetailsContainer = styled.div`
-  height: 600px;
+  height: 580px;
   overflow-y: scroll;
   border-radius: 10px;
   border: 2px solid #d2a038;
   background-color: #f8e3b3;
   box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
 
-  @media (max-width: 500px) {
+  @media (max-width: 660px) {
     height: 35vh;
     margin-bottom: 20px;
     border: 0px solid black;

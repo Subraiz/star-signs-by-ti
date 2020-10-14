@@ -11,6 +11,10 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
+button {
+  -webkit-border-fit: border !important;
+}
+
 html {
   background-image: url("./assets/WheelBG.png");
   background-size: cover;

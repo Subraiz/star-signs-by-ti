@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import Cookies from "universal-cookie";
 import ReactPlayer from "react-player";
-import Video from "../assets/video/Lebron.mp4";
+import Video from "../assets/video/test.mov";
 
 const cookies = new Cookies();
 
@@ -10,10 +10,10 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 337.5px;
+  width: 598px;
 
   .auth-video-container {
-    width: 100%;
+    width: 598px;
     height: 598px;
     background-color: #f9e3b3;
     border-radius: 10px;
@@ -71,12 +71,23 @@ const Container = styled.div`
     border-radius: 3px;
   }
 
-  @media (max-width: 415px) {
-    width: 200px;
+  @media (max-width: 950px) {
+    width: 400px;
     margin-top: 45px;
 
     .auth-video-container {
-      height: 355.5px;
+      height: 400px;
+      width: 400px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    width: 80vw;
+    margin-top: 45px;
+
+    .auth-video-container {
+      height: 80vw;
+      width: 80vw;
     }
 
     .error-message {
@@ -87,18 +98,20 @@ const Container = styled.div`
       position: absolute;
       width: 80vw;
       margin: 0 auto;
-      margin-top: 375px;
+      margin-top: 475px;
       left: 0;
       right: 0;
     }
   }
 
-  @media (min-width: 415px) and (max-width: 720px) {
-    width: 250px;
-    margin-top: 65px;
-
-    .auth-video-container {
-      height: 444.4px;
+  @media (max-width: 415px) {
+    .birthday-container {
+      position: absolute;
+      width: 80vw;
+      margin: 0 auto;
+      bottom: 245px;
+      left: 0;
+      right: 0;
     }
   }
 `;
