@@ -396,12 +396,12 @@ class Playlist extends Component {
               className="react-player"
               url={video}
               autoPlay={true}
-              playing={videoIsPlaying}
               width="100%"
               height="100%"
               onEnded={() => {
                 this.setState({ videoIsPlaying: false });
               }}
+              controls={true}
             />
           </HoroscopeVideoContainer>
           <HoroscopeSign>{playlist.sign}</HoroscopeSign>
