@@ -406,6 +406,8 @@ class SharePlaylist extends Component {
                 </div>
               ) : null}
               <ReactPlayer
+                playsinline={true}
+                controls={true}
                 ref={el => (this.playerRef = el)}
                 className="react-player"
                 url={video}

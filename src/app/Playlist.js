@@ -392,6 +392,7 @@ class Playlist extends Component {
         <HoroscopeContainer>
           <HoroscopeVideoContainer>
             <ReactPlayer
+              playsinline={true}
               ref={el => (this.playerRef = el)}
               className="react-player"
               url={video}
