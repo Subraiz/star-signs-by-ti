@@ -6,6 +6,7 @@ import { withRouter } from "react-router";
 import SpotifyPlayer from "react-spotify-web-playback";
 import axios from "axios";
 import { FaPlay } from "react-icons/fa";
+import { SiApplemusic } from "react-icons/si";
 import ReactPlayer from "react-player";
 import VideoRecordings from "./VideoRecordings";
 
@@ -156,6 +157,29 @@ const ZodiacSign = styled.p`
 
   @media (max-width: 500px) {
     border: 0px solid black;
+  }
+`;
+
+const SaveContainer = styled.div`
+  display: flex;
+
+  .apple-music {
+    padding-top: 5px;
+    margin-left: 20px;
+    cursor: pointer;
+    transition: 0.5s all ease;
+  }
+
+  .apple-music:hover {
+    color: #d2a038;
+  }
+
+  .apple-music-icon {
+    font-size: 32px;
+  }
+
+  @media (max-width: 415px) {
+    justify-content: space-between;
   }
 `;
 
@@ -368,15 +392,21 @@ class Playlist extends Component {
               allow="encrypted-media"
             ></iframe>
           </WebSongDetailsContainer>
-          <button
-            className="btn save-btn"
-            style={{ fontSize: 16 }}
-            onClick={() => {
-              this.saveSpotifyPlaylist();
-            }}
-          >
-            Save to Spotify
-          </button>
+
+          <SaveContainer>
+            <button
+              className="btn save-btn"
+              style={{ fontSize: 16 }}
+              onClick={() => {
+                this.saveSpotifyPlaylist();
+              }}
+            >
+              Save to Spotify
+            </button>
+            <a className="apple-music">
+              <SiApplemusic className="apple-music-icon" />
+            </a>
+          </SaveContainer>
 
           <div
             style={{
@@ -465,14 +495,19 @@ class Playlist extends Component {
           </WebSongDetailsContainer>
 
           <ShareContainer>
-            <button
-              className="save-btn"
-              onClick={() => {
-                this.saveSpotifyPlaylist();
-              }}
-            >
-              Save Playlist
-            </button>
+            <SaveContainer>
+              <button
+                className="save-btn"
+                onClick={() => {
+                  this.saveSpotifyPlaylist();
+                }}
+              >
+                Save Playlist
+              </button>
+              <a className="apple-music">
+                <SiApplemusic className="apple-music-icon" />
+              </a>
+            </SaveContainer>
             <SocialMediaContainer>
               <p className="share-text">Share Playlist</p>
               <div>

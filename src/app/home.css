@@ -126,6 +126,7 @@
 
   .save-btn {
     font-size: 12px;
+    width: 80%;
     border-radius: 5px;
   }
 }
