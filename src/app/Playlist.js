@@ -64,6 +64,23 @@ const HoroscopeVideoContainer = styled.div`
   position: relative;
   -webkit-mask-image: -webkit-radial-gradient(white, black);
 
+  .play-video-button {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 4;
+
+    .play-icon {
+      color: white;
+      font-size: 42px;
+      cursor: pointer;
+    }
+  }
+
   @media (max-width: 660px) {
     height: 90vw;
     width: 90vw;
@@ -277,6 +294,8 @@ class Playlist extends Component {
     const video =
       VideoRecordings[sign.toLowerCase()][Math.floor(Math.random() * 2)];
 
+    this.playerRef = React.createRef();
+
     this.state = {
       deviceId: undefined,
       startPlayingMusic: false,
@@ -286,8 +305,16 @@ class Playlist extends Component {
     };
   }
 
-  componentWillMount = async () => {
+  componentWillMount = () => {
     this.setState({ videoIsPlaying: true });
+  };
+
+  componentDidMount = () => {
+    setTimeout(() => {
+      const videoIsPlaying =
+        this.playerRef.getCurrentTime() === 0 ? false : true;
+      this.setState({ videoIsPlaying: videoIsPlaying });
+    }, 500);
   };
 
   saveSpotifyPlaylist = async () => {
@@ -364,14 +391,27 @@ class Playlist extends Component {
       <PlaylistContainer>
         <HoroscopeContainer>
           <HoroscopeVideoContainer>
+            {!videoIsPlaying ? (
+              <div className="play-video-button">
+                <FaPlay
+                  className="play-icon"
+                  onClick={() => {
+                    this.setState({ videoIsPlaying: true });
+                  }}
+                />
+              </div>
+            ) : null}
             <ReactPlayer
+              ref={el => (this.playerRef = el)}
               className="react-player"
               url={video}
               autoPlay={true}
               playing={videoIsPlaying}
               width="100%"
               height="100%"
-              controls={true}
+              onEnded={() => {
+                this.setState({ videoIsPlaying: false });
+              }}
             />
           </HoroscopeVideoContainer>
           <HoroscopeSign>{playlist.sign}</HoroscopeSign>
@@ -470,16 +510,30 @@ class Playlist extends Component {
       <PlaylistContainer>
         <HoroscopeContainer>
           <HoroscopeVideoContainer>
+            {!videoIsPlaying ? (
+              <div className="play-video-button">
+                <FaPlay
+                  className="play-icon"
+                  onClick={() => {
+                    this.setState({ videoIsPlaying: true });
+                  }}
+                />
+              </div>
+            ) : null}
+
             <ReactPlayer
+              ref={el => (this.playerRef = el)}
               className="react-player"
               url={video}
               autoPlay={true}
               playing={videoIsPlaying}
               width="100%"
               height="100%"
-              controls={true}
               onEnded={() => {
-                this.setState({ startPlayingMusic: true });
+                this.setState({
+                  startPlayingMusic: true,
+                  videoIsPlaying: false
+                });
               }}
             />
           </HoroscopeVideoContainer>

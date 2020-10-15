@@ -3,7 +3,7 @@ import styled from "styled-components";
 import axios from "axios";
 import { withRouter } from "react-router";
 import { FacebookShareButton, TwitterShareButton } from "react-share";
-import { FaTwitter, FaFacebook } from "react-icons/fa";
+import { FaTwitter, FaFacebook, FaPlay } from "react-icons/fa";
 import { TiSocialInstagramCircular } from "react-icons/ti";
 import ZodiacWheel from "../assets/Wheel.png";
 import ReactPlayer from "react-player";
@@ -167,6 +167,22 @@ const HoroscopeVideoContainer = styled.div`
   box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
   position: relative;
 
+  .play-video-button {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 4;
+
+    .play-icon {
+      color: white;
+      font-size: 42px;
+      cursor: pointer;
+    }
+
   @media (max-width: 550px) {
     height: 90vw;
     width: 90vw;
@@ -283,6 +299,8 @@ class SharePlaylist extends Component {
   constructor(props) {
     super(props);
 
+    this.playerRef = React.createRef();
+
     this.state = {
       loading: false,
       videoIsPlaying: false,
@@ -327,6 +345,8 @@ class SharePlaylist extends Component {
       });
     }
   };
+
+  componentDidMount = () => {};
 
   getNewAccessToken = async refreshToken => {
     const url = `${this.props.serverUrl}/auth/refresh`;
@@ -375,13 +395,23 @@ class SharePlaylist extends Component {
           <SecondContainer>
             <p className="intro-text">{`Your playlist has been saved. Why not share your ${playlist.sign} playlist with your friends.`}</p>
             <HoroscopeVideoContainer>
+              {!videoIsPlaying ? (
+                <div className="play-video-button">
+                  <FaPlay
+                    className="play-icon"
+                    onClick={() => {
+                      this.setState({ videoIsPlaying: true });
+                    }}
+                  />
+                </div>
+              ) : null}
               <ReactPlayer
+                ref={el => (this.playerRef = el)}
                 className="react-player"
                 url={video}
                 playing={videoIsPlaying}
                 width="100%"
                 height="100%"
-                controls={true}
               />
             </HoroscopeVideoContainer>
             <p className="zodiac-sign">{playlist.sign}</p>
