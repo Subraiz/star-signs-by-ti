@@ -8,7 +8,6 @@ import axios from "axios";
 import { FaPlay } from "react-icons/fa";
 import ReactPlayer from "react-player";
 import VideoRecordings from "./VideoRecordings";
-import Video from "../assets/video/test.mov";
 
 const PlaylistContainer = styled.div`
   background: none;
@@ -42,12 +41,14 @@ const HoroscopeContainer = styled.div`
   justify-content: center;
   width: 400px;
   font-family: "Merriweather", serif;
+  height: 600px;
 
   @media (max-width: 660px) {
     width: 90vw;
     margin-right: 0;
     justify-content: flex-start;
     margin-top: 15px;
+    height: auto;
   }
 `;
 
@@ -88,7 +89,7 @@ const WebPlaylistInfo = styled.div`
   width: 32vw;
   flex-direction: column;
   justify-content: center;
-  height: 65vh;
+  height: 580px;
   font-family: "Merriweather", serif;
 
   @media (max-width: 660px) {
@@ -174,7 +175,7 @@ const ShareContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 15px;
-
+  margin-top: 25px;
   width: 100%;
 
   @media (max-width: 1300px) {
@@ -248,7 +249,8 @@ class Playlist extends Component {
       deviceId: undefined,
       startPlayingMusic: false,
       videoIsPlaying: false,
-      signTranscript: video.transcript
+      signTranscript: video.transcript,
+      video: video.track
     };
   }
 
@@ -323,7 +325,7 @@ class Playlist extends Component {
   };
 
   renderMobileStream = () => {
-    const { signTranscript, videoIsPlaying } = this.state;
+    const { signTranscript, videoIsPlaying, video } = this.state;
     const { playlist } = this.props;
 
     return (
@@ -332,7 +334,7 @@ class Playlist extends Component {
           <HoroscopeVideoContainer>
             <ReactPlayer
               className="react-player"
-              url={Video}
+              url={video}
               autoPlay={true}
               playing={videoIsPlaying}
               width="100%"
@@ -418,7 +420,7 @@ class Playlist extends Component {
       startPlayingMusic,
       signTranscript,
       videoIsPlaying,
-      currentSong
+      video
     } = this.state;
     const { playlist, accessToken } = this.props;
 
@@ -432,7 +434,7 @@ class Playlist extends Component {
           <HoroscopeVideoContainer>
             <ReactPlayer
               className="react-player"
-              url={Video}
+              url={video}
               autoPlay={true}
               playing={videoIsPlaying}
               width="100%"
@@ -456,44 +458,43 @@ class Playlist extends Component {
             {this.renderPlaylistSongNames()}
           </WebSongDetailsContainer>
 
-          <PlayerContainer>
-            <ShareContainer>
-              <button
-                className="save-btn"
-                onClick={() => {
-                  this.saveSpotifyPlaylist();
-                }}
-              >
-                Save Playlist
-              </button>
-              <SocialMediaContainer>
-                <p className="share-text">Share Playlist</p>
-                <div>
-                  <FacebookShareButton
-                    url={`https://www.starsignsbyti.com/playlist/${playlist.sign}`}
-                    quote={"Stream The Libra Now"}
-                    hashtag="#TheLibra"
-                    className="social-media-btn"
-                  >
-                    <SocialMediaIcon>
-                      <p className="icon-text">F</p>
-                    </SocialMediaIcon>
-                  </FacebookShareButton>
-                  <TwitterShareButton
-                    url={`https://www.starsignsbyti.com/playlist/${playlist.sign}`}
-                    title={`Get your personalized horoscope from T.I.`}
-                    hashtag={["#TheLibra"]}
-                    related={["tip"]}
-                    className="social-media-btn"
-                  >
-                    <SocialMediaIcon>
-                      <p className="icon-text">T</p>
-                    </SocialMediaIcon>
-                  </TwitterShareButton>
-                </div>
-              </SocialMediaContainer>
-            </ShareContainer>
-            {/* <Player>
+          <ShareContainer>
+            <button
+              className="save-btn"
+              onClick={() => {
+                this.saveSpotifyPlaylist();
+              }}
+            >
+              Save Playlist
+            </button>
+            <SocialMediaContainer>
+              <p className="share-text">Share Playlist</p>
+              <div>
+                <FacebookShareButton
+                  url={`https://www.starsignsbyti.com/playlist/${playlist.sign}`}
+                  quote={"Stream The Libra Now"}
+                  hashtag="#TheLibra"
+                  className="social-media-btn"
+                >
+                  <SocialMediaIcon>
+                    <p className="icon-text">F</p>
+                  </SocialMediaIcon>
+                </FacebookShareButton>
+                <TwitterShareButton
+                  url={`https://www.starsignsbyti.com/playlist/${playlist.sign}`}
+                  title={`Get your personalized horoscope from T.I.`}
+                  hashtag={["#TheLibra"]}
+                  related={["tip"]}
+                  className="social-media-btn"
+                >
+                  <SocialMediaIcon>
+                    <p className="icon-text">T</p>
+                  </SocialMediaIcon>
+                </TwitterShareButton>
+              </div>
+            </SocialMediaContainer>
+          </ShareContainer>
+          {/* <Player>
               <SpotifyPlayer
                 name={"Spotify Web (The Libra)"}
                 token={accessToken}
@@ -514,7 +515,6 @@ class Playlist extends Component {
                 }}
               />
             </Player> */}
-          </PlayerContainer>
         </WebPlaylistInfo>
       </PlaylistContainer>
     );

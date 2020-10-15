@@ -5,7 +5,7 @@ import { withRouter } from "react-router";
 import { FacebookShareButton, TwitterShareButton } from "react-share";
 import ZodiacWheel from "../assets/Wheel.png";
 import ReactPlayer from "react-player";
-import Video from "../assets/video/test.mov";
+import VideoRecordings from "./VideoRecordings";
 import AlbumLogo from "../assets/AlbumLogo.png";
 import Signs from "./Signs";
 
@@ -284,7 +284,8 @@ class SharePlaylist extends Component {
     this.state = {
       loading: false,
       videoIsPlaying: false,
-      playlist: {}
+      playlist: {},
+      video: undefined
     };
   }
 
@@ -302,14 +303,26 @@ class SharePlaylist extends Component {
     } else {
       const refreshToken = `AQDYZkegeK9Vx8FAX_DXimDBn91KpzY8o4udA9QVVyJK5yq_UpqoeI2lWZ1JhKL-9Tq65RW_lcRhEV1UEWnIDS6_G-rIv8f8Ga6iCVN6R7T0jh2J47-MZY8xDKeALLZXsqA`;
       const accessToken = await this.getNewAccessToken(refreshToken);
+      const video =
+        VideoRecordings[
+          window.location.href
+            .split("/")
+            .pop()
+            .toLowerCase()
+        ][Math.floor(Math.random() * 2)];
 
       const playlist = await this.getPlaylist(
         sign.month,
         sign.day,
         accessToken
       );
-      this.setState({ videoIsPlaying: true });
-      this.setState({ playlist: playlist, loading: false });
+
+      this.setState({
+        playlist: playlist,
+        loading: false,
+        videoIsPlaying: true,
+        video: video.track
+      });
     }
   };
 
@@ -348,7 +361,7 @@ class SharePlaylist extends Component {
   };
 
   render() {
-    const { playlist, loading, videoIsPlaying } = this.state;
+    const { playlist, loading, videoIsPlaying, video } = this.state;
 
     if (!loading) {
       return (
@@ -362,11 +375,11 @@ class SharePlaylist extends Component {
             <HoroscopeVideoContainer>
               <ReactPlayer
                 className="react-player"
-                url={Video}
+                url={video}
                 playing={videoIsPlaying}
                 width="100%"
                 height="100%"
-                controls={false}
+                controls={true}
               />
             </HoroscopeVideoContainer>
             <p className="zodiac-sign">{playlist.sign}</p>

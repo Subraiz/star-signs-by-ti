@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import Cookies from "universal-cookie";
 import ReactPlayer from "react-player";
-import Video from "../assets/video/test.mov";
 
 const cookies = new Cookies();
 
@@ -21,6 +20,15 @@ const Container = styled.div`
     overflow: hidden;
     -webkit-mask-image: -webkit-radial-gradient(white, black);
     box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  img {
+    flex-shrink: 0;
+    width: 100%;
+    height: 100%;
   }
 
   p {
@@ -231,16 +239,7 @@ class SpotifyAuth extends Component {
     return (
       <Container>
         <div className="auth-video-container">
-          <ReactPlayer
-            className="react-player"
-            url={Video}
-            style={{}}
-            autoPlay={true}
-            playing={videoIsPlaying}
-            width="100%"
-            height="100%"
-            controls={false}
-          />
+          <img src={require("../assets/static.jpg")} />
         </div>
 
         <div className="birthday-container">
