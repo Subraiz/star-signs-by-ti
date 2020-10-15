@@ -13,7 +13,6 @@ const PlaylistContainer = styled.div`
   background: none;
   position: absolute;
   display: flex;
-  align-items: center;
   justify-content: flex-start;
 
   @media (max-width: 660px) {
@@ -38,10 +37,10 @@ const HoroscopeContainer = styled.div`
   flex-direction: column;
   margin-right: 4vw;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   width: 400px;
   font-family: "Merriweather", serif;
-  height: 600px;
+  height: 625px;
 
   @media (max-width: 660px) {
     width: 90vw;

@@ -89,8 +89,8 @@ const FirstContainer = styled.div`
         width: 225px;
       }
 
-      @media (min-width: 1300px) and (max-width: 1550px) {
-        width: 250px;
+      @media (min-width: 1300px) and (max-width: 1600px) {
+        width: 200px;
       }
     `}
 

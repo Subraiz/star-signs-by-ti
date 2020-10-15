@@ -10,7 +10,7 @@ import * as serviceWorker from "./serviceWorker";
 const history = createBrowserHistory();
 
 let serverUrl = "http://localhost:5000/api";
-serverUrl = "https://starsignsbyti.com:4000/api";
+//serverUrl = "https://starsignsbyti.com:4000/api";
 
 ReactDOM.render(
   <React.StrictMode>
