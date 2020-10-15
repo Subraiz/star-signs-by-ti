@@ -246,7 +246,6 @@ class Playlist extends Component {
 
     this.state = {
       deviceId: undefined,
-      currentSong: props.playlist.tracks[0].name,
       startPlayingMusic: false,
       videoIsPlaying: false,
       signTranscript: video.transcript
