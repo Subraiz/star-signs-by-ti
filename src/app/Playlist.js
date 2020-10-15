@@ -164,7 +164,9 @@ const SaveContainer = styled.div`
   display: flex;
 
   .apple-music {
-    padding-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-left: 20px;
     cursor: pointer;
     transition: 0.5s all ease;
@@ -175,7 +177,7 @@ const SaveContainer = styled.div`
   }
 
   .apple-music-icon {
-    font-size: 32px;
+    font-size: 38px;
   }
 
   @media (max-width: 415px) {
