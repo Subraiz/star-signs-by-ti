@@ -88,6 +88,7 @@ const WebPlaylistInfo = styled.div`
   width: 32vw;
   flex-direction: column;
   justify-content: center;
+
   height: 580px;
   font-family: "Merriweather", serif;
 
@@ -134,9 +135,14 @@ const Song = styled.p`
 
 const ZodiacSignContainer = styled.div`
   display: flex;
-  width: 100%;
+  width: 90%;
   align-items: center;
   justify-content: center;
+  margin-left: 5%;
+
+  img {
+    width: 50px;
+  }
 `;
 
 const ZodiacSign = styled.p`
@@ -452,6 +458,7 @@ class Playlist extends Component {
         <WebPlaylistInfo>
           <WebSongDetailsContainer>
             <ZodiacSignContainer>
+              <img src={require(`../assets/artwork/${playlist.sign}.jpg`)} />
               <ZodiacSign>{`${playlist.sign} Horoscope Playlist`}</ZodiacSign>
             </ZodiacSignContainer>
             {this.renderPlaylistSongNames()}
