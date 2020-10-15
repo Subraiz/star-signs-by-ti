@@ -177,7 +177,7 @@ const SaveContainer = styled.div`
   }
 
   .apple-music-icon {
-    font-size: 38px;
+    font-size: 34px;
   }
 
   @media (max-width: 415px) {
