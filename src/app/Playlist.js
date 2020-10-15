@@ -5,7 +5,12 @@ import { FacebookShareButton, TwitterShareButton } from "react-share";
 import { withRouter } from "react-router";
 import SpotifyPlayer from "react-spotify-web-playback";
 import axios from "axios";
-import { FaPlay } from "react-icons/fa";
+import {
+  FaPlay,
+  FaTwitter,
+  FaFacebook,
+  FaInstagramSquare
+} from "react-icons/fa";
 import { SiApplemusic } from "react-icons/si";
 import ReactPlayer from "react-player";
 import VideoRecordings from "./VideoRecordings";
@@ -233,7 +238,7 @@ const SocialMediaIcon = styled.div`
 
   a {
     color: white;
-
+    padding-top: 4px;
     :hover {
       color: black;
     }
@@ -425,7 +430,7 @@ class Playlist extends Component {
               className="social-media-btn"
             >
               <SocialMediaIcon>
-                <p className="icon-text">F</p>
+                <FaFacebook className="icon-text" />
               </SocialMediaIcon>
             </FacebookShareButton>
             <TwitterShareButton
@@ -436,12 +441,12 @@ class Playlist extends Component {
               className="social-media-btn"
             >
               <SocialMediaIcon>
-                <p className="icon-text">T</p>
+                <FaTwitter className="icon-text" />
               </SocialMediaIcon>
             </TwitterShareButton>
             <SocialMediaIcon>
               <a href="instagram://story-camera" rel="noopener noreferrer">
-                I
+                <FaInstagramSquare />
               </a>
             </SocialMediaIcon>
           </div>
@@ -519,8 +524,8 @@ class Playlist extends Component {
                   hashtag="#TheLibra"
                   className="social-media-btn"
                 >
-                  <SocialMediaIcon>
-                    <p className="icon-text">F</p>
+                  <SocialMediaIcon className="icon-text">
+                    <FaFacebook className="icon-text" />
                   </SocialMediaIcon>
                 </FacebookShareButton>
                 <TwitterShareButton
@@ -531,7 +536,7 @@ class Playlist extends Component {
                   className="social-media-btn"
                 >
                   <SocialMediaIcon>
-                    <p className="icon-text">T</p>
+                    <FaTwitter className="icon-text" />
                   </SocialMediaIcon>
                 </TwitterShareButton>
               </div>
