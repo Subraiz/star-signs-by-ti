@@ -305,17 +305,7 @@ class Playlist extends Component {
     };
   }
 
-  componentWillMount = () => {
-    this.setState({ videoIsPlaying: true });
-  };
-
-  componentDidMount = () => {
-    setTimeout(() => {
-      const videoIsPlaying =
-        this.playerRef.getCurrentTime() === 0 ? false : true;
-      this.setState({ videoIsPlaying: videoIsPlaying });
-    }, 500);
-  };
+  componentWillMount = () => {};
 
   saveSpotifyPlaylist = async () => {
     const { serverUrl, accessToken, userId, playlist } = this.props;
@@ -399,9 +389,6 @@ class Playlist extends Component {
               autoPlay={true}
               width="100%"
               height="100%"
-              onEnded={() => {
-                this.setState({ videoIsPlaying: false });
-              }}
               controls={true}
             />
           </HoroscopeVideoContainer>
@@ -516,7 +503,7 @@ class Playlist extends Component {
               ref={el => (this.playerRef = el)}
               className="react-player"
               url={video}
-              autoPlay={true}
+              autoPlay={false}
               playing={videoIsPlaying}
               width="100%"
               height="100%"
