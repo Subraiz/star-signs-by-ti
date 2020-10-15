@@ -5,12 +5,8 @@ import { FacebookShareButton, TwitterShareButton } from "react-share";
 import { withRouter } from "react-router";
 import SpotifyPlayer from "react-spotify-web-playback";
 import axios from "axios";
-import {
-  FaPlay,
-  FaTwitter,
-  FaFacebook,
-  FaInstagramSquare
-} from "react-icons/fa";
+import { FaPlay, FaTwitter, FaFacebook } from "react-icons/fa";
+import { TiSocialInstagramCircular } from "react-icons/ti";
 import { SiApplemusic } from "react-icons/si";
 import ReactPlayer from "react-player";
 import VideoRecordings from "./VideoRecordings";
@@ -238,7 +234,8 @@ const SocialMediaIcon = styled.div`
 
   a {
     color: white;
-    padding-top: 4px;
+    padding-top: 5px;
+    font-size: 24px;
     :hover {
       color: black;
     }
@@ -445,7 +442,7 @@ class Playlist extends Component {
             </TwitterShareButton>
             <SocialMediaIcon>
               <a href="instagram://story-camera" rel="noopener noreferrer">
-                <FaInstagramSquare />
+                <TiSocialInstagramCircular />
               </a>
             </SocialMediaIcon>
           </div>

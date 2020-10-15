@@ -3,6 +3,8 @@ import styled from "styled-components";
 import axios from "axios";
 import { withRouter } from "react-router";
 import { FacebookShareButton, TwitterShareButton } from "react-share";
+import { FaTwitter, FaFacebook } from "react-icons/fa";
+import { TiSocialInstagramCircular } from "react-icons/ti";
 import ZodiacWheel from "../assets/Wheel.png";
 import ReactPlayer from "react-player";
 import VideoRecordings from "./VideoRecordings";
@@ -202,14 +204,14 @@ const SocialMediaIcon = styled.div`
 
   a {
     color: white;
-
+    padding-top: 5px;
+    font-size: 24px;
     :hover {
       color: black;
     }
   }
 
   .icon-text {
-    font-family: "Libre Caslon Text", serif;
     margin: 0 auto;
   }
 `;
@@ -391,7 +393,7 @@ class SharePlaylist extends Component {
                 className="social-media-btn"
               >
                 <SocialMediaIcon>
-                  <p className="icon-text">F</p>
+                  <FaFacebook className="icon-text" />
                 </SocialMediaIcon>
               </FacebookShareButton>
               <TwitterShareButton
@@ -402,16 +404,12 @@ class SharePlaylist extends Component {
                 className="social-media-btn"
               >
                 <SocialMediaIcon>
-                  <p className="icon-text">T</p>
+                  <FaTwitter className="icon-text" />
                 </SocialMediaIcon>
               </TwitterShareButton>
               <SocialMediaIcon>
-                <a
-                  href="instagram://story-camera"
-                  className="icon-text"
-                  rel="noopener noreferrer"
-                >
-                  I
+                <a href="instagram://story-camera" rel="noopener noreferrer">
+                  <TiSocialInstagramCircular />
                 </a>
               </SocialMediaIcon>
             </SocialMediaContainer>
