@@ -70,7 +70,7 @@ const FirstContainer = styled.div`
   }
 
   .intro-text {
-    font-family: "Merriweather", serif;
+    font-family: "Libre Caslon Display", serif;
     font-weight: 300;
     font-size: 22px;
   }

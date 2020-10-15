@@ -45,7 +45,7 @@ const HoroscopeContainer = styled.div`
   align-items: center;
   justify-content: flex-start;
   width: 400px;
-  font-family: "Merriweather", serif;
+  font-family: "Libre Caslon Text", serif;
   height: 625px;
 
   @media (max-width: 660px) {
@@ -96,7 +96,7 @@ const WebPlaylistInfo = styled.div`
   justify-content: center;
 
   height: 580px;
-  font-family: "Merriweather", serif;
+  font-family: "Libre Caslon Text", serif;
 
   @media (max-width: 660px) {
     width: 90vw;
@@ -153,7 +153,7 @@ const ZodiacSignContainer = styled.div`
 
 const ZodiacSign = styled.p`
   color: black;
-  font-weight: 700;
+  font-weight: 600;
   padding-left: 10px;
   margin: 15px 0;
   padding-bottom: 5px;
@@ -245,7 +245,6 @@ const SocialMediaIcon = styled.div`
   }
 
   .icon-text {
-    font-family: "Merriweather", serif;
     margin: 0 auto;
   }
 `;
@@ -256,7 +255,7 @@ const SocialMediaContainer = styled.div`
   align-items: center;
 
   .share-text {
-    font-family: "Merriweather", serif;
+    font-family: "Libre Caslon Text", serif;
     margin: 0 25px 0 0;
   }
 

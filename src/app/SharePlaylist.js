@@ -108,14 +108,14 @@ const SecondContainer = styled.div`
   transition: left 0.5s ease-out;
 
   .intro-text {
-    font-family: "Merriweather", serif;
+    font-family: "Libre Caslon Text", serif;
     text-align: center;
     width: 500px;
     font-size: 18px;
   }
 
   .zodiac-sign {
-    font-family: "Merriweather", serif;
+    font-family: "Libre Caslon Text", serif;
     text-align: center;
     width: 300px;
     font-size: 18px;
@@ -209,7 +209,7 @@ const SocialMediaIcon = styled.div`
   }
 
   .icon-text {
-    font-family: "Merriweather", serif;
+    font-family: "Libre Caslon Text", serif;
     margin: 0 auto;
   }
 `;
@@ -220,7 +220,7 @@ const SocialMediaContainer = styled.div`
   align-items: center;
 
   .share-text {
-    font-family: "Merriweather", serif;
+    font-family: "Libre Caslon Text", serif;
     font-size: 18px;
     margin: 0 10px 0 0;
   }
