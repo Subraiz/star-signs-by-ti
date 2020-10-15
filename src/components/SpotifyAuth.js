@@ -164,7 +164,7 @@ class SpotifyAuth extends Component {
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
         const age = diffDays / 365;
 
-        if (age < 21) {
+        if (age < 14) {
           this.setState({
             errorMessage:
               "You must be at least 14 to continue with this experience."
