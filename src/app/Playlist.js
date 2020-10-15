@@ -391,16 +391,6 @@ class Playlist extends Component {
       <PlaylistContainer>
         <HoroscopeContainer>
           <HoroscopeVideoContainer>
-            {!videoIsPlaying ? (
-              <div className="play-video-button">
-                <FaPlay
-                  className="play-icon"
-                  onClick={() => {
-                    this.setState({ videoIsPlaying: true });
-                  }}
-                />
-              </div>
-            ) : null}
             <ReactPlayer
               ref={el => (this.playerRef = el)}
               className="react-player"
