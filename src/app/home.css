@@ -76,6 +76,7 @@
 .save-btn {
   padding: 10px 30px;
   color: white;
+  border-radius: 5px;
   background-color: black;
   display: flex;
   justify-content: center;
