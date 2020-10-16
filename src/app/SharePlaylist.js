@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { withRouter } from "react-router";
+import { isMobile } from "react-device-detect";
 import { FacebookShareButton, TwitterShareButton } from "react-share";
 import { FaTwitter, FaFacebook, FaPlay } from "react-icons/fa";
 import { TiSocialInstagramCircular } from "react-icons/ti";
@@ -429,11 +430,13 @@ class SharePlaylist extends Component {
                   <FaTwitter className="icon-text" />
                 </SocialMediaIcon>
               </TwitterShareButton>
-              <SocialMediaIcon>
-                <a href="instagram://story-camera" rel="noopener noreferrer">
-                  <TiSocialInstagramCircular />
-                </a>
-              </SocialMediaIcon>
+              {isMobile ? (
+                <SocialMediaIcon>
+                  <a href="instagram://story-camera" rel="noopener noreferrer">
+                    <TiSocialInstagramCircular />
+                  </a>
+                </SocialMediaIcon>
+              ) : null}
             </SocialMediaContainer>
           </SecondContainer>
 

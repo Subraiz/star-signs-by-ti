@@ -283,7 +283,8 @@ class Playlist extends Component {
       videoIsPlaying: false,
       signTranscript: video.transcript,
       video: video.track,
-      appleMusicLink: ""
+      appleMusicLink:
+        "https://music.apple.com/us/album/the-l-i-b-r-a/1535726551"
     };
   }
 
