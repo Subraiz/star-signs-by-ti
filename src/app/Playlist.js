@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { isMobile } from "react-device-detect";
 import { FacebookShareButton, TwitterShareButton } from "react-share";
 import { withRouter } from "react-router";
-import SpotifyPlayer from "react-spotify-web-playback";
 import axios from "axios";
 import { FaPlay, FaTwitter, FaFacebook } from "react-icons/fa";
 import { TiSocialInstagramCircular } from "react-icons/ti";
@@ -120,7 +119,7 @@ const WebPlaylistInfo = styled.div`
   @media (max-width: 660px) {
     width: 90vw;
     height: auto;
-    margin-top: 25px;
+    margin-top: 0px;
   }
 `;
 
@@ -138,11 +137,6 @@ const WebSongDetailsContainer = styled.div`
     margin-bottom: 20px;
     border: 0px solid black;
   }
-`;
-
-const CurrentSong = styled.p`
-  color: black;
-  font-weight: 700;
 `;
 
 const SongContainer = styled.div`
@@ -192,14 +186,6 @@ const PlayerContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   margin-top: 20px;
-`;
-
-const Player = styled.div`
-  width: 100%;
-
-  @media (max-width: 500px) {
-    margin-bottom: 25px;
-  }
 `;
 
 const ShareContainer = styled.div`
@@ -294,10 +280,10 @@ class Playlist extends Component {
 
     this.state = {
       deviceId: undefined,
-      startPlayingMusic: false,
       videoIsPlaying: false,
       signTranscript: video.transcript,
-      video: video.track
+      video: video.track,
+      appleMusicLink: ""
     };
   }
 
@@ -324,10 +310,6 @@ class Playlist extends Component {
         // Handle error
         console.log(err);
       });
-  };
-
-  togglePlayingMusic = () => {
-    this.setState({ startPlayingMusic: !this.state.startPlayingMusic });
   };
 
   getMobileDeviceId = async () => {
@@ -357,7 +339,6 @@ class Playlist extends Component {
 
   renderPlaylistSongNames = () => {
     const { playlist } = this.props;
-    const { currentSong } = this.state;
 
     return playlist.tracks.map((song, i) => {
       return (
@@ -370,7 +351,7 @@ class Playlist extends Component {
   };
 
   renderMobileStream = () => {
-    const { signTranscript, videoIsPlaying, video } = this.state;
+    const { signTranscript, video, appleMusicLink } = this.state;
     const { playlist } = this.props;
 
     return (
@@ -429,7 +410,7 @@ class Playlist extends Component {
             }}
           >
             <SocialMediaIcon>
-              <a className="apple-music">
+              <a href={appleMusicLink} className="apple-music">
                 <SiApplemusic className="apple-music-icon" />
               </a>
             </SocialMediaIcon>
@@ -469,16 +450,12 @@ class Playlist extends Component {
 
   renderDesktopStream = () => {
     const {
-      startPlayingMusic,
       signTranscript,
       videoIsPlaying,
-      video
+      video,
+      appleMusicLink
     } = this.state;
-    const { playlist, accessToken } = this.props;
-
-    let tracks = playlist.tracks.map(track => {
-      return track.uri;
-    });
+    const { playlist } = this.props;
 
     return (
       <PlaylistContainer>
@@ -505,7 +482,6 @@ class Playlist extends Component {
               height="100%"
               onEnded={() => {
                 this.setState({
-                  startPlayingMusic: true,
                   videoIsPlaying: false
                 });
               }}
@@ -519,7 +495,10 @@ class Playlist extends Component {
         <WebPlaylistInfo>
           <WebSongDetailsContainer>
             <ZodiacSignContainer>
-              <img src={require(`../assets/artwork/${playlist.sign}.jpg`)} />
+              <img
+                src={require(`../assets/artwork/${playlist.sign}.jpg`)}
+                alt="sign"
+              />
               <ZodiacSign>{`${playlist.sign} Horoscope Playlist`}</ZodiacSign>
             </ZodiacSignContainer>
             {this.renderPlaylistSongNames()}
@@ -539,7 +518,7 @@ class Playlist extends Component {
               <p className="share-text">Share Playlist</p>
               <div style={{ display: "flex" }}>
                 <SocialMediaIcon>
-                  <a className="apple-music">
+                  <a className="apple-music" href={appleMusicLink}>
                     <SiApplemusic className="apple-music-icon" />
                   </a>
                 </SocialMediaIcon>
@@ -567,27 +546,6 @@ class Playlist extends Component {
               </div>
             </SocialMediaContainer>
           </ShareContainer>
-          {/* <Player>
-              <SpotifyPlayer
-                name={"Spotify Web (The Libra)"}
-                token={accessToken}
-                uris={tracks}
-                callback={state => {
-                  this.setState({ currentSong: state.track.name });
-                }}
-                // autoPlay={true}
-                play={startPlayingMusic}
-                persistDeviceSelection
-                syncExternalDevice
-                styles={{
-                  bgColor: "#f8e3b3",
-                  sliderColor: "#d2a038",
-                  sliderHandleColor: "#d2a038",
-                  sliderTrackColor: "#000",
-                  trackArtistColor: "#d2a038"
-                }}
-              />
-            </Player> */}
         </WebPlaylistInfo>
       </PlaylistContainer>
     );

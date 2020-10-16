@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import Cookies from "universal-cookie";
-import ReactPlayer from "react-player";
 import "./connect.css";
 
 const cookies = new Cookies();
@@ -138,7 +137,6 @@ class SpotifyAuth extends Component {
       birthMonth: "",
       birthDate: "",
       birthYear: "",
-      videoIsPlaying: false,
       errorMessage: undefined,
       href: undefined
     };
@@ -220,10 +218,6 @@ class SpotifyAuth extends Component {
         errorMessage: "Please enter a number for month, day, and year."
       });
     }
-
-    if (!this.state.videoIsPlaying) {
-      this.setState({ videoIsPlaying: true });
-    }
   };
 
   renderErrorMessage = () => {
@@ -235,17 +229,11 @@ class SpotifyAuth extends Component {
   };
 
   render() {
-    const {
-      birthMonth,
-      birthDate,
-      birthYear,
-      videoIsPlaying,
-      href
-    } = this.state;
+    const { birthMonth, birthDate, birthYear, href } = this.state;
     return (
       <Container>
         <div className="auth-video-container">
-          <img src={require("../assets/static.jpg")} />
+          <img src={require("../assets/static.jpg")} alt="ti" />
         </div>
 
         <div className="birthday-container">
