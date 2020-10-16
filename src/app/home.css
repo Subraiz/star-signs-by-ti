@@ -73,10 +73,13 @@
   z-index: -1;
 }
 
+.connect-btn {
+  font-size: 18px !important;
+}
+
 .save-btn {
   padding: 10px 30px;
   color: white;
-  border-radius: 5px;
   background-color: black;
   display: flex;
   justify-content: center;
@@ -126,8 +129,5 @@
   }
 
   .save-btn {
-    font-size: 12px;
-    width: 80%;
-    border-radius: 5px;
   }
 }

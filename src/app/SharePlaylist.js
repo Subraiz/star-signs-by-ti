@@ -93,6 +93,7 @@ const FirstContainer = styled.div`
       margin: auto;
       width: 60vw;
       height: 120px;
+      margin-top: 45px;
     }
   }
 `;
@@ -120,15 +121,14 @@ const SecondContainer = styled.div`
     font-family: "Libre Caslon Text", serif;
     text-align: center;
     width: 300px;
-    font-size: 18px;
+    font-size: 24px;
     font-weight: 700;
     text-transform: capitalize;
   }
 
   @media (max-width: 550px) {
     align-items: center;
-    width: 300px;
-
+    width: 90vw;
     margin: 0 auto;
     margin-top: -110px;
     left: 0;
@@ -182,6 +182,7 @@ const HoroscopeVideoContainer = styled.div`
       font-size: 42px;
       cursor: pointer;
     }
+  }
 
   @media (max-width: 550px) {
     height: 90vw;

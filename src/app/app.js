@@ -111,6 +111,11 @@ const FirstContainer = styled.div`
           display: none;
         }
       }
+      @media (max-width: 660px) {
+        .logo-placeholder {
+          margin-top: 20px !important;
+        }
+      }
     `}
 
   @media (max-width: 660px) {
@@ -119,10 +124,12 @@ const FirstContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 15px;
+    margin-top: 45px;
+    justify-content: center;
 
     .logo-placeholder {
-      width: 60vw;
+      background-position: center;
+      width: 100vw;
       height: 140px;
       margin: auto;
     }

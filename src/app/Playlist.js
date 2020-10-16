@@ -91,6 +91,12 @@ const HoroscopeSign = styled.p`
   text-transform: capitalize;
   text-align: center;
   font-weight: 700;
+  margin: 0;
+  margin-top: 20px;
+
+  @media (max-width: 550px) {
+    font-size: 24px;
+  }
 `;
 
 const HoroscopeText = styled.p`
@@ -98,7 +104,7 @@ const HoroscopeText = styled.p`
   line-height: 1.2;
 
   @media (max-width: 500px) {
-    line-height: 1;
+    line-height: 1.5;
   }
 `;
 
@@ -128,6 +134,7 @@ const WebSongDetailsContainer = styled.div`
 
   @media (max-width: 660px) {
     height: 35vh;
+    overflow: hidden;
     margin-bottom: 20px;
     border: 0px solid black;
   }
@@ -178,31 +185,6 @@ const ZodiacSign = styled.p`
   }
 `;
 
-const SaveContainer = styled.div`
-  display: flex;
-
-  .apple-music {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 20px;
-    cursor: pointer;
-    transition: 0.5s all ease;
-  }
-
-  .apple-music:hover {
-    color: #d2a038;
-  }
-
-  .apple-music-icon {
-    font-size: 34px;
-  }
-
-  @media (max-width: 415px) {
-    justify-content: space-between;
-  }
-`;
-
 const PlayerContainer = styled.div`
   display: flex;
   align-items: center;
@@ -243,6 +225,18 @@ const SocialMediaIcon = styled.div`
   margin-left: 7px;
   transition: ease-out 0.3s;
   color: #f8e3b3;
+  cursor: pointer;
+
+  .apple-music {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s all ease;
+  }
+
+  .apple-music-icon {
+    font-size: 14px;
+  }
 
   :hover {
     background-color: #f8e3b3;
@@ -416,20 +410,15 @@ class Playlist extends Component {
             ></iframe>
           </WebSongDetailsContainer>
 
-          <SaveContainer>
-            <button
-              className="btn save-btn"
-              style={{ fontSize: 16 }}
-              onClick={() => {
-                this.saveSpotifyPlaylist();
-              }}
-            >
-              Save to Spotify
-            </button>
-            <a className="apple-music">
-              <SiApplemusic className="apple-music-icon" />
-            </a>
-          </SaveContainer>
+          <button
+            className="btn save-btn"
+            style={{ fontSize: 16 }}
+            onClick={() => {
+              this.saveSpotifyPlaylist();
+            }}
+          >
+            Save to Spotify
+          </button>
 
           <div
             style={{
@@ -439,6 +428,11 @@ class Playlist extends Component {
               marginTop: 30
             }}
           >
+            <SocialMediaIcon>
+              <a className="apple-music">
+                <SiApplemusic className="apple-music-icon" />
+              </a>
+            </SocialMediaIcon>
             <FacebookShareButton
               url={`https://www.starsignsbyti.com/playlist/${playlist.sign}`}
               quote={"Stream The Libra Now"}
@@ -532,22 +526,23 @@ class Playlist extends Component {
           </WebSongDetailsContainer>
 
           <ShareContainer>
-            <SaveContainer>
-              <button
-                className="save-btn"
-                onClick={() => {
-                  this.saveSpotifyPlaylist();
-                }}
-              >
-                Save Playlist
-              </button>
-              <a className="apple-music">
-                <SiApplemusic className="apple-music-icon" />
-              </a>
-            </SaveContainer>
+            <button
+              className="save-btn"
+              onClick={() => {
+                this.saveSpotifyPlaylist();
+              }}
+            >
+              Save to Spotify
+            </button>
+
             <SocialMediaContainer>
               <p className="share-text">Share Playlist</p>
-              <div>
+              <div style={{ display: "flex" }}>
+                <SocialMediaIcon>
+                  <a className="apple-music">
+                    <SiApplemusic className="apple-music-icon" />
+                  </a>
+                </SocialMediaIcon>
                 <FacebookShareButton
                   url={`https://www.starsignsbyti.com/playlist/${playlist.sign}`}
                   quote={"Stream The Libra Now"}

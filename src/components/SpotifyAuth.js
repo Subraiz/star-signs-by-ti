@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import Cookies from "universal-cookie";
 import ReactPlayer from "react-player";
+import "./connect.css";
 
 const cookies = new Cookies();
 
@@ -9,11 +10,11 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 598px;
+  width: 350px;
 
   .auth-video-container {
-    width: 598px;
-    height: 598px;
+    width: 350px;
+    height: 350px;
     background-color: #f9e3b3;
     border-radius: 10px;
     border: 2px solid #d2a038;
@@ -32,13 +33,13 @@ const Container = styled.div`
   }
 
   p {
-    font-family: "Merriweather", serif;
+    font-family: "Libre Caslon Text", serif;
     font-weight: 300;
     text-align: center;
   }
 
   .error-message {
-    font-family: "Merriweather", serif;
+    font-family: "Libre Caslon Text", serif;
     font-weight: 300;
     text-align: center;
     color: black;
@@ -49,6 +50,10 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
+
+    p {
+      font-size: 18px;
+    }
   }
 
   .birthday-input-container {
@@ -64,7 +69,7 @@ const Container = styled.div`
     border: 1px solid #d2a038;
     padding: 8px 20px;
     margin-right: 2%;
-    font-family: "Merriweather", serif;
+    font-family: "Libre Caslon Text", serif;
     font-weight: 300;
   }
 
@@ -72,7 +77,7 @@ const Container = styled.div`
     padding: 18px 25px;
     background-color: black;
     color: white;
-    font-family: "Merriweather", serif;
+    font-family: "Libre Caslon Text", serif;
     font-weight: 300;
     text-align: center;
     margin-top: 25px;
@@ -91,11 +96,12 @@ const Container = styled.div`
 
   @media (max-width: 600px) {
     width: 80vw;
-    margin-top: 45px;
+    margin-top: 55px;
 
     .auth-video-container {
       height: 80vw;
       width: 80vw;
+      margin-top: -40px;
     }
 
     .error-message {
@@ -117,7 +123,7 @@ const Container = styled.div`
       position: absolute;
       width: 80vw;
       margin: 0 auto;
-      bottom: 245px;
+      top: 320px;
       left: 0;
       right: 0;
     }
@@ -274,7 +280,7 @@ class SpotifyAuth extends Component {
             />
           </div>
           {this.renderErrorMessage()}
-          <a className="save-btn" href={href}>
+          <a className="save-btn connect-btn" href={href}>
             Connect to Spotify
           </a>
         </div>
