@@ -119,10 +119,9 @@ const Container = styled.div`
 
   @media (max-width: 415px) {
     .birthday-container {
-      position: absolute;
+      position: relative;
       width: 80vw;
       margin: 0 auto;
-      top: 320px;
       left: 0;
       right: 0;
     }
