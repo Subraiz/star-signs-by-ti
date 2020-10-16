@@ -236,7 +236,12 @@ class App extends Component {
 
         cookies.set("refresh_token", refreshToken, { path: "/" });
 
-        const user = await this.getUser(accessToken);
+        const user = await this.getUser(
+          accessToken,
+          cookies.get("birthMonth"),
+          cookies.get("birthDate"),
+          cookies.get("birthYear")
+        );
         const playlist = await this.getPlaylist(
           cookies.get("birthMonth"),
           cookies.get("birthDate"),
@@ -258,7 +263,12 @@ class App extends Component {
       }
     } else {
       let accessToken = await this.getNewAccessToken(refreshToken);
-      const user = await this.getUser(accessToken);
+      const user = await this.getUser(
+        accessToken,
+        cookies.get("birthMonth"),
+        cookies.get("birthDate"),
+        cookies.get("birthYear")
+      );
       let userId = user.id;
       const playlist = await this.getPlaylist(
         cookies.get("birthMonth"),
@@ -293,14 +303,20 @@ class App extends Component {
     return accessToken;
   };
 
-  getUser = async accessToken => {
+  getUser = async (accessToken, month, day, year) => {
     const url = `${this.props.serverUrl}/user`;
+    const birth = {
+      month,
+      day,
+      year
+    };
+
     let user;
 
     await axios({
       method: "GET",
       url,
-      params: { access_token: accessToken }
+      params: { access_token: accessToken, birth: birth }
     })
       .then(res => {
         user = res.data;
