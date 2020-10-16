@@ -246,18 +246,27 @@ class SpotifyAuth extends Component {
           <p>Select your birthdate and get your horoscope.</p>
           <div className="birthday-input-container">
             <input
+              type="number"
+              inputMode="numeric"
+              pattern="[0-9]*"
               placeholder="Month"
               name="birthMonth"
               value={birthMonth}
               onChange={e => this.handleBirthChange(e)}
             />
             <input
+              type="number"
+              inputMode="numeric"
+              pattern="[0-9]*"
               placeholder="Day"
               name="birthDate"
               value={birthDate}
               onChange={e => this.handleBirthChange(e)}
             />
             <input
+              type="number"
+              inputMode="numeric"
+              pattern="[0-9]*"
               placeholder="Year"
               name="birthYear"
               value={birthYear}
