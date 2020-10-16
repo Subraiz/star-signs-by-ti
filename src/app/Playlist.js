@@ -242,7 +242,7 @@ const SocialMediaIcon = styled.div`
   justify-content: center;
   margin-left: 7px;
   transition: ease-out 0.3s;
-  color: white;
+  color: #f8e3b3;
 
   :hover {
     background-color: #f8e3b3;
@@ -250,8 +250,10 @@ const SocialMediaIcon = styled.div`
   }
 
   a {
-    color: white;
-    padding-top: 5px;
+    color: #f8e3b3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 24px;
     :hover {
       color: black;

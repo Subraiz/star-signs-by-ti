@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styled, { css } from "styled-components";
+import { Tween } from "react-gsap";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import { withRouter } from "react-router";
@@ -343,6 +344,7 @@ class App extends Component {
       return (
         <StyledApp>
           <SpinningZodiacWheel />
+
           <FirstContainer authenticated={authenticated}>
             <div className="logo-placeholder" />
             {!authenticated ? (
