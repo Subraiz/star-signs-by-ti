@@ -272,14 +272,17 @@ class Playlist extends Component {
   constructor(props) {
     super(props);
 
-    const sign = props.playlist.sign;
-    const video =
-      VideoRecordings[sign.toLowerCase()][Math.floor(Math.random() * 2)];
+    const sign = props.playlist.sign.toLowerCase();
+    const randomVideoIndex = Math.floor(Math.random() * 2);
+    const video = VideoRecordings[sign][randomVideoIndex];
 
     this.playerRef = React.createRef();
 
     this.state = {
       deviceId: undefined,
+      showNewHoroscopeButton: false,
+      randomVideoIndex: randomVideoIndex,
+      videoSign: sign,
       videoIsPlaying: false,
       signTranscript: video.transcript,
       video: video.track,
@@ -351,8 +354,30 @@ class Playlist extends Component {
     });
   };
 
+  getNewHoroscope = () => {
+    const { videoSign, randomVideoIndex } = this.state;
+    console.log(videoSign, randomVideoIndex);
+    const video =
+      randomVideoIndex === 0
+        ? VideoRecordings[videoSign][1]
+        : VideoRecordings[videoSign][0];
+
+    this.setState({
+      signTranscript: video.transcript,
+      video: video.track,
+      showNewHoroscopeButton: false,
+      videoIsPlaying: true,
+      randomVideoIndex: randomVideoIndex === 0 ? 1 : 0
+    });
+  };
+
   renderMobileStream = () => {
-    const { signTranscript, video, appleMusicLink } = this.state;
+    const {
+      signTranscript,
+      video,
+      appleMusicLink,
+      showNewHoroscopeButton
+    } = this.state;
     const { playlist } = this.props;
 
     return (
@@ -368,10 +393,23 @@ class Playlist extends Component {
               width="100%"
               height="100%"
               controls={true}
+              onEnded={() => {
+                this.setState({ showNewHoroscopeButton: true });
+              }}
             />
           </HoroscopeVideoContainer>
           <HoroscopeSign>{playlist.sign}</HoroscopeSign>
           <HoroscopeText>{signTranscript}</HoroscopeText>
+          {showNewHoroscopeButton ? (
+            <button
+              className="save-btn"
+              onClick={() => {
+                this.getNewHoroscope();
+              }}
+            >
+              Get Another Horoscope
+            </button>
+          ) : null}
         </HoroscopeContainer>
 
         <WebPlaylistInfo>
@@ -454,7 +492,8 @@ class Playlist extends Component {
       signTranscript,
       videoIsPlaying,
       video,
-      appleMusicLink
+      appleMusicLink,
+      showNewHoroscopeButton
     } = this.state;
     const { playlist } = this.props;
 
@@ -483,7 +522,8 @@ class Playlist extends Component {
               height="100%"
               onEnded={() => {
                 this.setState({
-                  videoIsPlaying: false
+                  videoIsPlaying: false,
+                  showNewHoroscopeButton: true
                 });
               }}
             />
@@ -491,6 +531,16 @@ class Playlist extends Component {
 
           <HoroscopeSign>{playlist.sign}</HoroscopeSign>
           <HoroscopeText>{signTranscript}</HoroscopeText>
+          {showNewHoroscopeButton ? (
+            <button
+              className="save-btn"
+              onClick={() => {
+                this.getNewHoroscope();
+              }}
+            >
+              Get Another Horoscope
+            </button>
+          ) : null}
         </HoroscopeContainer>
 
         <WebPlaylistInfo>
