@@ -33,7 +33,6 @@ const Container = styled.div`
 
   p {
     font-family: "Libre Caslon Text", serif;
-    font-style: italic;
     font-weight: 300;
     text-align: center;
   }

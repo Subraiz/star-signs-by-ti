@@ -191,12 +191,14 @@ const PlayerContainer = styled.div`
 const ShareContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 15px;
   margin-top: 25px;
   width: 100%;
 
   @media (max-width: 1300px) {
     flex-direction: column-reverse;
+    height: 150px;
   }
 `;
 
