@@ -79,7 +79,7 @@ const FirstContainer = styled.div`
   ${props =>
     props.authenticated &&
     css`
-      @media (max-width: 350px) {
+      @media (max-width: 376px) {
         height: 120px;
         margin-bottom: 25px;
       }
