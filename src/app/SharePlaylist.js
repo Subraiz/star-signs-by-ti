@@ -379,6 +379,9 @@ class SharePlaylist extends Component {
     if (!loading) {
       return (
         <StyledApp>
+          <div className="bg-image">
+            <img src={require("../assets/WheelBG.jpg")} />
+          </div>
           <SpinningZodiacWheel />
           <FirstContainer>
             <div className="logo-placeholder" />
