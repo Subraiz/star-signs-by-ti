@@ -366,6 +366,9 @@ class App extends Component {
     if (!loading) {
       return (
         <StyledApp>
+          <div className="bg-image">
+            <img src={require("../assets/WheelBG.jpg")} />
+          </div>
           <SpinningZodiacWheel />
           <FirstContainer authenticated={authenticated}>
             <div className="logo-placeholder" />

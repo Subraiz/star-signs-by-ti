@@ -5,6 +5,7 @@ body {
   margin: 0;
   padding: 0;
   overscroll-behavior: none;
+  width: 100vw;
 }
 
 .bg-image {
@@ -17,12 +18,17 @@ body {
   overflow: hidden;
   align-items: center;
   justify-content: center;
+  margin: 0;
+  padding: 0;
 }
 
-.bg-image {
+.bg-image img {
   flex-shrink: 0;
   min-width: 100%;
   min-height: 100%;
+}
+
+@media (max-width: 500px) {
 }
 
 * {
@@ -68,5 +74,10 @@ u {
 @media (max-width: 500px) {
   html {
     background-image: url("./assets/ZodiacWheel.png");
+    background-size: cover;
+    background-position: center center;
+  }
+  .bg-image {
+    display: none !important;
   }
 }
