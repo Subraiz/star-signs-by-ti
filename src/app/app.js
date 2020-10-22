@@ -17,8 +17,8 @@ const SpinningZodiacWheel = styled.div`
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  height: 106vh;
-  top: -3vh;
+  height: 100vh;
+
   transition: opacity 0.5s linear;
   opacity: 0.4;
   width: 100vw;
@@ -45,7 +45,8 @@ const SpinningZodiacWheel = styled.div`
 const StyledApp = styled.div`
   display: flex;
   width: 100vw;
-  min-height: 100vh;
+  height: 100vh;
+
   flex-direction: row;
   justify-content: space-between;
 
@@ -366,7 +367,6 @@ class App extends Component {
       return (
         <StyledApp>
           <SpinningZodiacWheel />
-
           <FirstContainer authenticated={authenticated}>
             <div className="logo-placeholder" />
             {!authenticated ? (
