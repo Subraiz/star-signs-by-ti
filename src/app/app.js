@@ -79,6 +79,10 @@ const FirstContainer = styled.div`
   ${props =>
     props.authenticated &&
     css`
+      @media (max-width: 350px) {
+        height: 120px;
+        margin-bottom: 25px;
+      }
       @media (min-width: 660px) and (max-width: 1300px) {
         position: absolute;
         display: flex;
