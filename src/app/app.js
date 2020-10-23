@@ -418,7 +418,7 @@ class App extends Component {
               className={"btn stream-button"}
               target="_blank"
               rel="noopener noreferrer"
-              href={`https://open.spotify.com/playlist/${playlist.playlist_id}`}
+              href={`https://music.empi.re/thelibra`}
             >
               Stream
             </a>
