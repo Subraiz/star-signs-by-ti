@@ -78,7 +78,7 @@ const FirstContainer = styled.div`
 
   @media (max-width: 375px) {
     margin-bottom: 25px;
-    height: 140px;
+    height: 180px;
   }
 
   ${props =>
