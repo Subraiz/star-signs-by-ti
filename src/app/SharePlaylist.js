@@ -20,12 +20,11 @@ const StyledApp = styled.div`
   justify-content: space-between;
 
 
-  @media (max-width: 550px) {
+  @media (max-width: 750px) {
     flex-direction: column;
     overflow: scroll;
     position: relative;
     justify-content: space-around;
-
 
   }
 `;
@@ -78,7 +77,7 @@ const FirstContainer = styled.div`
 
 
 
-  @media (min-width: 550px) and (max-width: 920px) {
+  @media (min-width: 750px) and (max-width: 920px) {
     display: flex;
     align-items: center;
     margin: auto;
@@ -89,7 +88,7 @@ const FirstContainer = styled.div`
     margin-left: 20px;
   }
 
-  @media (max-width: 550px) {
+  @media (max-width: 750px) {
     width: 100vw;
     margin-left: 0;
     display: flex;
@@ -113,10 +112,9 @@ const SecondContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-
-
+  position: absolute;
   left: 25%;
-  margin: 0 auto;
+
   transition: left 0.5s ease-out;
 
   .intro-text {
@@ -135,7 +133,7 @@ const SecondContainer = styled.div`
     text-transform: capitalize;
   }
 
-  @media (max-width: 550px) {
+  @media (max-width: 750px) {
     align-items: center;
     width: 90vw;
     margin: 0 auto;
@@ -151,22 +149,9 @@ const SecondContainer = styled.div`
     }
   }
 
-  @media (max-height: 800px) and (max-width: 550px){
+  
 
-
-  }
-
-  @media (min-width: 550px) and (max-width: 920px) {
-    width: 250px;
-    left: 0;
-    right: 0;
-
-    .intro-text {
-      width: 500px;
-    }
-  }
-
-  @media (min-width: 920px) and (max-width: 1260px) {
+  @media (min-width: 750px) and (max-width: 1260px) {
     right: 50px;
     left: auto;
   }
@@ -268,28 +253,17 @@ const ThirdContainer = styled.div`
   position: absolute;
   right: 0;
 
-  @media (max-width: 415px) {
+  @media (max-width: 750px) {
     display: none;
   }
 
-  @media (min-width: 415px) and (max-width: 720px) {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 180px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+
 
   .stream-override-button {
     margin: 0 !important;
   }
 
-  @media (min-width: 720px) and (max-width: 1100px) {
+  @media (min-width: 750px) and (max-width: 1100px) {
     display: flex;
     flex-direction: column;
     justify-content: space-between;

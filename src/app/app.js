@@ -205,6 +205,10 @@ const ThirdContainer = styled.div`
     display: none;
   }
 
+  @media (max-width: 1190px) and (max-height: 700px){
+    display: none;
+  }
+
   ${props =>
     !props.authenticated &&
     css`
