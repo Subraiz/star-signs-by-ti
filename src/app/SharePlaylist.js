@@ -257,7 +257,7 @@ const ThirdContainer = styled.div`
     display: none;
   }
 
-  @media (max-width: 1190px) and (max-height: 700px){
+  @media (max-width: 1190px) and (max-height: 782px){
     display: none;
   }
 
