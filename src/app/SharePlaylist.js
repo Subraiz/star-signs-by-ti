@@ -24,6 +24,8 @@ const StyledApp = styled.div`
     flex-direction: column;
     overflow: scroll;
     position: relative;
+    justify-content: space-around;
+
 
   }
 `;
@@ -112,6 +114,7 @@ const SecondContainer = styled.div`
   justify-content: center;
   flex-direction: column;
 
+
   left: 25%;
   margin: 0 auto;
   transition: left 0.5s ease-out;
@@ -140,6 +143,8 @@ const SecondContainer = styled.div`
     left: 0;
     position: relative;
     justify-content: center;
+    height: auto;
+      margin-top: .5rem;
 
     .intro-text {
       width: 90vw;
@@ -147,7 +152,7 @@ const SecondContainer = styled.div`
   }
 
   @media (max-height: 800px) and (max-width: 550px){
-    margin-top: 0rem;
+
 
   }
 
