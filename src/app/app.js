@@ -76,13 +76,14 @@ const FirstContainer = styled.div`
     font-size: 22px;
   }
 
+  @media (max-width: 376px) {
+    height: 120px;
+    margin-bottom: 25px;
+  }
+
   ${props =>
     props.authenticated &&
     css`
-      @media (max-width: 376px) {
-        height: 120px;
-        margin-bottom: 25px;
-      }
       @media (min-width: 660px) and (max-width: 1300px) {
         position: absolute;
         display: flex;
@@ -163,6 +164,13 @@ const SecondContainer = styled.div`
     left: 0;
     position: relative;
   }
+
+  ${props =>
+    props.authenticated &&
+    css`
+      @media (max-width: 376px) {
+      }
+    `}
 
   ${props =>
     !props.authenticated &&
