@@ -350,7 +350,6 @@ class Playlist extends Component {
       return (
         <SongContainer key={i}>
           <Song>{song.name}</Song>
-          <FaPlay />
         </SongContainer>
       );
     });
