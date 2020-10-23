@@ -207,6 +207,14 @@ const ThirdContainer = styled.div`
     display: none;
   }
 
+  ${props =>
+    props.authenticated &&
+    css`
+    @media (max-height: 650px){
+      display: none !important;
+    }
+    `}
+
   @media (max-height: 700px){
     left: 20px;
     bottom: 30px;
