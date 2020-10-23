@@ -257,7 +257,9 @@ const ThirdContainer = styled.div`
     display: none;
   }
 
-
+  @media (max-width: 1190px) and (max-height: 700px){
+    display: none;
+  }
 
   .stream-override-button {
     margin: 0 !important;
