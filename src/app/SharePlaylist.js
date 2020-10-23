@@ -257,15 +257,14 @@ const ThirdContainer = styled.div`
     display: none;
   }
 
-  @media (max-width: 1190px) and (max-height: 782px){
-    display: none;
+  @media (max-height: 782px){
+    left: 20px;
+    bottom: 30px;
   }
 
   .stream-override-button {
     margin: 0 !important;
   }
-
-
 `;
 
 class SharePlaylist extends Component {

@@ -104,7 +104,7 @@ const FirstContainer = styled.div`
       }
     `}
 
-  
+
 
   ${props =>
     !props.authenticated &&
@@ -203,15 +203,14 @@ const ThirdContainer = styled.div`
   right: 0;
   display: flex;
 
-  @media (max-width: 500px) {
+  @media (max-width: 660px) {
     display: none;
   }
 
-  @media (max-width: 1190px) and (max-height: 700px){
-    display: none;
+  @media (max-height: 700px){
+    left: 20px;
+    bottom: 30px;
   }
-
-
 `;
 
 const LoadingContainer = styled.div`
