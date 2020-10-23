@@ -37,7 +37,7 @@ const SpinningZodiacWheel = styled.div`
     }
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 950px) {
     display: none;
   }
 `;
@@ -99,6 +99,10 @@ const FirstContainer = styled.div`
         width: 200px;
       }
     `}
+
+    @media (max-width: 1300px) and (max-height: 850px) {
+      display: none;
+    }
 
   ${props =>
     !props.authenticated &&

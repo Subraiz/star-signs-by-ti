@@ -71,11 +71,12 @@ u {
   background: transparent; /* Optional: just make scrollbar invisible */
 }
 
-@media (max-width: 500px) {
+@media (max-width: 950px) {
   html {
     background-image: url("./assets/ZodiacWheel.png");
     background-size: cover;
     background-position: center center;
+    min-height: 100vh;
   }
   .bg-image {
     display: none !important;

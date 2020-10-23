@@ -19,10 +19,12 @@ const StyledApp = styled.div`
   flex-direction: row;
   justify-content: space-between;
 
+
   @media (max-width: 550px) {
     flex-direction: column;
     overflow: scroll;
-    justify-content: flex-start;
+    position: relative;
+
   }
 `;
 
@@ -52,7 +54,7 @@ const SpinningZodiacWheel = styled.div`
     }
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 950px) {
     display: none;
   }
 `;
@@ -61,6 +63,7 @@ const FirstContainer = styled.div`
   width: 350px;
   margin-left: 25px;
   margin-top: 25px;
+
 
   .logo-placeholder {
     width: 100%;
@@ -71,15 +74,17 @@ const FirstContainer = styled.div`
     transition: width 0.25s ease-out;
   }
 
+
+
   @media (min-width: 550px) and (max-width: 920px) {
-    position: absolute;
     display: flex;
     align-items: center;
     margin: auto;
     margin-top: 15px;
     left: 0;
     right: 0;
-    width: 175px;
+    width: 200px;
+    margin-left: 20px;
   }
 
   @media (max-width: 550px) {
@@ -106,7 +111,7 @@ const SecondContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  position: absolute;
+
   left: 25%;
   margin: 0 auto;
   transition: left 0.5s ease-out;
@@ -141,6 +146,11 @@ const SecondContainer = styled.div`
     }
   }
 
+  @media (max-height: 800px) and (max-width: 550px){
+    margin-top: 0rem;
+
+  }
+
   @media (min-width: 550px) and (max-width: 920px) {
     width: 250px;
     left: 0;
@@ -152,7 +162,6 @@ const SecondContainer = styled.div`
   }
 
   @media (min-width: 920px) and (max-width: 1260px) {
-    position: absolute;
     right: 50px;
     left: auto;
   }
@@ -262,7 +271,7 @@ const ThirdContainer = styled.div`
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 20px;
+    bottom: 0px;
     margin-left: auto;
     margin-right: auto;
     width: 180px;
