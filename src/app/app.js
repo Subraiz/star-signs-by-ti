@@ -132,6 +132,7 @@ const FirstContainer = styled.div`
     align-items: center;
     margin-top: 45px;
     justify-content: center;
+    padding-bottom: 1rem;
 
     .logo-placeholder {
       background-position: center;
