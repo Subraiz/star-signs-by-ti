@@ -149,7 +149,7 @@ const SecondContainer = styled.div`
     }
   }
 
-  
+
 
   @media (min-width: 750px) and (max-width: 1260px) {
     right: 50px;
@@ -263,16 +263,7 @@ const ThirdContainer = styled.div`
     margin: 0 !important;
   }
 
-  @media (min-width: 750px) and (max-width: 1100px) {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100px;
-    position: absolute;
-    bottom: 30px;
-    left: 20px;
-    width: 200px;
-  }
+
 `;
 
 class SharePlaylist extends Component {
