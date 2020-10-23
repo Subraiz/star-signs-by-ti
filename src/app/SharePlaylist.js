@@ -387,7 +387,7 @@ class SharePlaylist extends Component {
             <div className="logo-placeholder" />
           </FirstContainer>
           <SecondContainer>
-            <p className="intro-text">{`Your playlist has been saved. Why not share your ${playlist.sign} playlist with your friends.`}</p>
+            <p className="intro-text">{`Your playlist has been saved. Why not share your ${playlist.sign} playlist with your friends?`}</p>
             <HoroscopeVideoContainer>
               {!videoIsPlaying ? (
                 <div className="play-video-button">
