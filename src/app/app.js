@@ -104,8 +104,6 @@ const FirstContainer = styled.div`
       }
     `}
 
-
-
   ${props =>
     !props.authenticated &&
     css`
@@ -165,7 +163,6 @@ const SecondContainer = styled.div`
   margin: 0 auto;
   transition: left 0.5s ease-out;
 
-
   @media (max-width: 660px) {
     align-items: flex-start;
     width: 100vw;
@@ -184,15 +181,9 @@ const SecondContainer = styled.div`
   ${props =>
     !props.authenticated &&
     css`
-    @media (max-width: 950px) {
-      margin-top: 2rem;
-    }
-
-    @media (min-width: 950px) and (max-width: 1230px) {
-        position: absolute;
-        left: auto;
-        right: 8%;
-    }
+      @media (max-width: 950px) {
+        margin-top: 2rem;
+      }
     `}
 `;
 
@@ -210,12 +201,20 @@ const ThirdContainer = styled.div`
   ${props =>
     props.authenticated &&
     css`
-    @media (max-height: 650px){
-      display: none !important;
-    }
+      @media (max-height: 650px) {
+        display: none !important;
+      }
     `}
 
-  @media (max-height: 700px){
+  ${props =>
+    !props.authenticated &&
+    css`
+      @media (max-width: 800px) {
+        display: none !important;
+      }
+    `}
+
+  @media (max-height: 700px) {
     left: 20px;
     bottom: 30px;
   }
