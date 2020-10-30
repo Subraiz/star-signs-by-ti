@@ -19,7 +19,7 @@ const StyledApp = styled.div`
   flex-direction: row;
   justify-content: space-between;
 
-  @media (max-width: 750px) {
+  @media (max-width: 850px) {
     flex-direction: column;
     overflow: scroll;
     position: relative;
@@ -74,7 +74,7 @@ const FirstContainer = styled.div`
     transition: all 0.25s ease-out;
   }
 
-  @media (min-width: 750px) and (max-width: 920px) {
+  @media (min-width: 850px) and (max-width: 920px) {
     display: flex;
     align-items: center;
     margin: auto;
@@ -85,7 +85,7 @@ const FirstContainer = styled.div`
     margin-left: 20px;
   }
 
-  @media (max-width: 750px) {
+  @media (max-width: 850px) {
     width: 100vw;
     margin-left: 0;
     display: flex;
@@ -106,7 +106,7 @@ const FirstContainer = styled.div`
     display: none !important;
   }
 
-  @media (max-width: 750px) {
+  @media (max-width: 850px) {
     display: flex !important;
     .logo-placeholder  {
       width: 250px !important;
@@ -147,7 +147,7 @@ const SecondContainer = styled.div`
     text-transform: capitalize;
   }
 
-  @media (max-width: 750px) {
+  @media (max-width: 850px) {
     align-items: center;
     width: 90vw;
     margin: 0 auto;
@@ -300,7 +300,7 @@ const ThirdContainer = styled.div`
   position: absolute;
   right: 0;
 
-  @media (max-width: 750px) {
+  @media (max-width: 850px) {
     display: none;
   }
 
