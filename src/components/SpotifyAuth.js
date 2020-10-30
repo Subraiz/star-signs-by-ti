@@ -60,14 +60,15 @@ const Container = styled.div`
     display: flex;
     justify-content: space-between;
     width: 100%;
+    align-items: center;
   }
 
   input {
-    width: 27%;
+    max-width: 25%;
     background-color: #f8e3b3;
     border-radius: 5px;
     border: 1px solid #d2a038;
-    padding: 8px 20px;
+    padding: 8px 0 8px 20px;
     margin-right: 2%;
     font-family: "Libre Caslon Text", serif;
     font-weight: 300;
