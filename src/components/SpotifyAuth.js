@@ -8,8 +8,8 @@ const cookies = new Cookies();
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   width: 350px;
+  align-items: center;
 
   .auth-video-container {
     width: 350px;
@@ -49,6 +49,7 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
+    align-items: center;
 
     p {
       font-size: 18px;
