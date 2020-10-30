@@ -108,10 +108,8 @@ const Container = styled.div`
     }
 
     .birthday-container {
-      position: absolute;
       width: 80vw;
       margin: 0 auto;
-      margin-top: 475px;
       left: 0;
       right: 0;
     }

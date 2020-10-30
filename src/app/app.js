@@ -187,7 +187,7 @@ const SecondContainer = styled.div`
     !props.authenticated &&
     css`
       @media (max-width: 950px) {
-        margin-top: 2rem;
+        margin-top: 1rem;
       }
     `}
 `;
