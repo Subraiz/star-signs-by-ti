@@ -143,12 +143,20 @@ const FirstContainer = styled.div`
         align-items: center;
 
         .logo-placeholder {
-          width: 130px;
+          width: 250px;
         }
       }
 
-      @media (max-height: 740px) and (max-width: 1000px) {
-        display: none;
+      @media (max-height: 785px) and (max-width: 1000px) {
+        .logo-placeholder {
+          width: 150px;
+        }
+      }
+
+      @media (max-height: 715px) and (max-width: 1000px) and (min-width: 660px) {
+        .logo-placeholder {
+          display: none;
+        }
       }
     `}
 
