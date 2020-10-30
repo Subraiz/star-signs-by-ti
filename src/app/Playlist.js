@@ -27,9 +27,9 @@ const PlaylistContainer = styled.div`
     margin: 0 auto;
   }
 
-  @media (min-width: 660px) and (max-width: 1300px) {
+  @media (min-width: 660px) and (max-width: 1350px) {
     align-items: flex-start;
-    margin-top: 40px;
+    margin-top: 60px;
   }
 `;
 

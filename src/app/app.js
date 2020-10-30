@@ -84,7 +84,7 @@ const FirstContainer = styled.div`
   ${props =>
     props.authenticated &&
     css`
-      @media (min-width: 660px) and (max-width: 1300px) {
+      @media (min-width: 660px) and (max-width: 1350px) {
         position: absolute;
         display: flex;
         align-items: center;
@@ -95,7 +95,16 @@ const FirstContainer = styled.div`
         width: 225px;
       }
 
-      @media (min-width: 1300px) and (max-width: 1600px) {
+      @media (max-width: 1350px) and (max-height: 770px) {
+        display: none;
+      }
+
+      @media (max-width: 1350px) and (max-height: 840px) {
+        width: 150px;
+        margin-top: 20px;
+      }
+
+      @media (min-width: 1350px) and (max-width: 1600px) {
         width: 200px;
       }
 
@@ -210,9 +219,8 @@ const ThirdContainer = styled.div`
         display: none !important;
       }
 
-      @media (max-height: 700px) {
-        left: 20px;
-        bottom: 30px;
+      @media (max-width: 1200px) and (max-height: 715px) {
+        display: none;
       }
     `}
 

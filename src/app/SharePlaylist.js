@@ -19,13 +19,11 @@ const StyledApp = styled.div`
   flex-direction: row;
   justify-content: space-between;
 
-
   @media (max-width: 750px) {
     flex-direction: column;
     overflow: scroll;
     position: relative;
     justify-content: space-around;
-
   }
 `;
 
@@ -64,7 +62,7 @@ const FirstContainer = styled.div`
   width: 350px;
   margin-left: 25px;
   margin-top: 25px;
-
+  transition: all 0.25s ease-out;
 
   .logo-placeholder {
     width: 100%;
@@ -73,9 +71,8 @@ const FirstContainer = styled.div`
     background-size: contain;
     background-repeat: no-repeat;
     transition: width 0.25s ease-out;
+    transition: all 0.25s ease-out;
   }
-
-
 
   @media (min-width: 750px) and (max-width: 920px) {
     display: flex;
@@ -94,15 +91,25 @@ const FirstContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     margin-top: 15px;
 
     .logo-placeholder {
       margin: auto;
-      width: 60vw;
+      width: 200px !important;
       height: 120px;
       margin-top: 45px;
     }
   }
+
+  @media (max-width: 820px) and (max-height: 820px) {
+    display: none !important;
+  }
+
+  @media (max-width: 1250px) {
+    .logo-placeholder {
+      width:18vw;
+    }
 `;
 
 const SecondContainer = styled.div`
@@ -142,18 +149,17 @@ const SecondContainer = styled.div`
     position: relative;
     justify-content: center;
     height: auto;
-      margin-top: .5rem;
+    margin-top: 0.5rem;
 
     .intro-text {
       width: 90vw;
     }
   }
 
-
-
-  @media (min-width: 750px) and (max-width: 1260px) {
-    right: 50px;
-    left: auto;
+  @media (min-width: 550px) and (max-height: 560px) {
+    p {
+      display: none;
+    }
   }
 `;
 
@@ -187,6 +193,20 @@ const HoroscopeVideoContainer = styled.div`
   @media (max-width: 550px) {
     height: 90vw;
     width: 90vw;
+  }
+
+  @media (min-width: 550px) and (max-height: 750px) {
+    width: 350px;
+    height: 350px;
+  }
+
+  @media (min-width: 550px) and (max-height: 560px) {
+    width: 250px;
+    height: 250px;
+  }
+
+  @media (min-width: 550px) and (max-height: 560px) {
+    margin-bottom: 10px;
   }
 `;
 
@@ -245,6 +265,10 @@ const SocialMediaContainer = styled.div`
   @media (max-width: 1300px) {
     margin-bottom: 10px;
   }
+
+  @media (min-width: 550px) and (max-height: 310px) {
+    display: none;
+  }
 `;
 
 const ThirdContainer = styled.div`
@@ -257,9 +281,8 @@ const ThirdContainer = styled.div`
     display: none;
   }
 
-  @media (max-height: 782px){
-    left: 20px;
-    bottom: 30px;
+  @media (max-height: 800px) and (max-width: 850px) {
+    display: none;
   }
 
   .stream-override-button {
