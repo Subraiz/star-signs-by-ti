@@ -106,6 +106,13 @@ const FirstContainer = styled.div`
     display: none !important;
   }
 
+  @media (max-width: 750px) {
+    display: flex !important;
+    .logo-placeholder  {
+      width: 250px !important;
+    }
+  }
+
   @media (max-width: 1250px) {
     .logo-placeholder {
       width:18vw;
@@ -144,7 +151,7 @@ const SecondContainer = styled.div`
     align-items: center;
     width: 90vw;
     margin: 0 auto;
-    margin-top: -110px;
+    margin-top: -210px;
     left: 0;
     position: relative;
     justify-content: center;

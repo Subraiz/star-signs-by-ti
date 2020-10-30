@@ -116,7 +116,7 @@ const FirstContainer = styled.div`
   ${props =>
     !props.authenticated &&
     css`
-      @media (min-width: 660px) and (max-width: 1050px) {
+      @media (min-width: 660px) and (max-width: 1000px) {
         position: absolute;
         display: flex;
         align-items: center;
@@ -138,7 +138,7 @@ const FirstContainer = styled.div`
         }
       }
 
-      @media (max-height: 840px) and (max-width: 1050px) {
+      @media (max-height: 840px) and (max-width: 1000px) {
         justify-content: center;
         align-items: center;
 
@@ -147,7 +147,7 @@ const FirstContainer = styled.div`
         }
       }
 
-      @media (max-height: 740px) and (max-width: 1050px) {
+      @media (max-height: 740px) and (max-width: 1000px) {
         display: none;
       }
     `}
