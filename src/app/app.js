@@ -81,10 +81,6 @@ const FirstContainer = styled.div`
     height: 180px;
   }
 
-  @media (max-height: 755px) and (min-width: 660px) {
-    display: none !important;
-  }
-
   ${props =>
     props.authenticated &&
     css`
@@ -102,12 +98,16 @@ const FirstContainer = styled.div`
       @media (min-width: 1300px) and (max-width: 1600px) {
         width: 200px;
       }
+
+      @media (min-height: 755px) and (max-width: 660px) {
+        display: none !important;
+      }
     `}
 
   ${props =>
     !props.authenticated &&
     css`
-      @media (min-width: 660px) and (max-width: 950px) {
+      @media (min-width: 660px) and (max-width: 1050px) {
         position: absolute;
         display: flex;
         align-items: center;
@@ -122,10 +122,15 @@ const FirstContainer = styled.div`
           display: none;
         }
       }
+
       @media (max-width: 660px) {
         .logo-placeholder {
           margin-top: 20px !important;
         }
+      }
+
+      @media (max-height: 845px) and (max-width: 1050px) {
+        display: none !important;
       }
     `}
 
@@ -194,30 +199,34 @@ const ThirdContainer = styled.div`
   right: 0;
   display: flex;
 
-  @media (max-width: 660px) {
-    display: none;
-  }
-
   ${props =>
     props.authenticated &&
     css`
+      @media (max-width: 660px) {
+        display: none;
+      }
+
       @media (max-height: 650px) {
         display: none !important;
+      }
+
+      @media (max-height: 700px) {
+        left: 20px;
+        bottom: 30px;
       }
     `}
 
   ${props =>
     !props.authenticated &&
     css`
-      @media (max-width: 800px) {
+      @media (max-width: 570px) {
+        display: none !important;
+      }
+
+      @media (max-width: 800px) and (max-height: 800px) {
         display: none !important;
       }
     `}
-
-  @media (max-height: 700px) {
-    left: 20px;
-    bottom: 30px;
-  }
 `;
 
 const LoadingContainer = styled.div`
