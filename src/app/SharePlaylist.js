@@ -102,7 +102,7 @@ const FirstContainer = styled.div`
     }
   }
 
-  @media (max-width: 830px) and (max-height: 820px) {
+  @media (max-width: 850px) and (max-height: 850px) {
     display: none !important;
   }
 
