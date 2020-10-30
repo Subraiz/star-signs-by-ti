@@ -109,7 +109,7 @@ const FirstContainer = styled.div`
       }
 
       @media (min-height: 755px) and (max-width: 660px) {
-        display: none !important;
+        margin: 0;
       }
     `}
 
@@ -138,8 +138,17 @@ const FirstContainer = styled.div`
         }
       }
 
-      @media (max-height: 845px) and (max-width: 1050px) {
-        display: none !important;
+      @media (max-height: 840px) and (max-width: 1050px) {
+        justify-content: center;
+        align-items: center;
+
+        .logo-placeholder {
+          width: 130px;
+        }
+      }
+
+      @media (max-height: 740px) and (max-width: 1050px) {
+        display: none;
       }
     `}
 
@@ -231,7 +240,7 @@ const ThirdContainer = styled.div`
         display: none !important;
       }
 
-      @media (max-width: 800px) and (max-height: 800px) {
+      @media (max-width: 810px) and (max-height: 810px) {
         display: none !important;
       }
     `}

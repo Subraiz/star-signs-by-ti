@@ -102,7 +102,7 @@ const FirstContainer = styled.div`
     }
   }
 
-  @media (max-width: 820px) and (max-height: 820px) {
+  @media (max-width: 830px) and (max-height: 820px) {
     display: none !important;
   }
 
@@ -157,8 +157,24 @@ const SecondContainer = styled.div`
   }
 
   @media (min-width: 550px) and (max-height: 560px) {
-    p {
+    .zodiac-sign {
       display: none;
+    }
+  }
+
+  @media (min-width: 550px) and (max-height: 385px) {
+    .intro-text {
+      font-size: 14px;
+    }
+  }
+
+  @media (min-width: 550px) and (max-height: 375px) {
+    .intro-text {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 20%;
+      text-align: left;
     }
   }
 `;
