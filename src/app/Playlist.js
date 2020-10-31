@@ -146,6 +146,11 @@ const SongContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid #000;
+  cursor: pointer;
+
+  &:last-child {
+    margin-bottom: 20px;
+  }
 `;
 
 const Song = styled.p`
@@ -345,11 +350,18 @@ class Playlist extends Component {
 
   renderPlaylistSongNames = () => {
     const { playlist } = this.props;
+    const playlistId = playlist.playlist_id;
 
     return playlist.tracks.map((song, i) => {
       return (
-        <SongContainer key={i}>
+        <SongContainer
+          key={i}
+          onClick={() => {
+            window.location.href = `https://open.spotify.com/playlist/${playlistId}`;
+          }}
+        >
           <Song>{song.name}</Song>
+          <FaPlay />
         </SongContainer>
       );
     });
@@ -456,7 +468,7 @@ class Playlist extends Component {
             </SocialMediaIcon>
             <FacebookShareButton
               url={`https://www.starsignsbyti.com/playlist/${playlist.sign}`}
-              quote={"Stream The Libra Now"}
+              quote={"Get your horoscope reading and playlist from T.I."}
               hashtag="#TheLibra"
               className="social-media-btn"
             >
@@ -576,7 +588,7 @@ class Playlist extends Component {
                 </SocialMediaIcon>
                 <FacebookShareButton
                   url={`https://www.starsignsbyti.com/playlist/${playlist.sign}`}
-                  quote={"Stream The Libra Now"}
+                  quote={"Get your horoscope reading and playlist from T.I."}
                   hashtag="#TheLibra"
                   className="social-media-btn"
                 >
