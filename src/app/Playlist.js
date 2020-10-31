@@ -467,7 +467,7 @@ class Playlist extends Component {
               </a>
             </SocialMediaIcon>
             <FacebookShareButton
-              url={`https://www.starsignsbyti.com/playlist/${playlist.sign}`}
+              url={`https://www.starsignsbyti.com/`}
               quote={"Get your horoscope reading and playlist from T.I."}
               hashtag="#TheLibra"
               className="social-media-btn"
@@ -477,7 +477,7 @@ class Playlist extends Component {
               </SocialMediaIcon>
             </FacebookShareButton>
             <TwitterShareButton
-              url={`https://www.starsignsbyti.com/playlist/${playlist.sign}`}
+              url={`https://www.starsignsbyti.com/`}
               title={`Get your personalized horoscope from T.I.`}
               hashtag={["#TheLibra"]}
               related={["tip"]}
@@ -587,7 +587,7 @@ class Playlist extends Component {
                   </a>
                 </SocialMediaIcon>
                 <FacebookShareButton
-                  url={`https://www.starsignsbyti.com/playlist/${playlist.sign}`}
+                  url={`https://www.starsignsbyti.com/`}
                   quote={"Get your horoscope reading and playlist from T.I."}
                   hashtag="#TheLibra"
                   className="social-media-btn"
@@ -597,7 +597,7 @@ class Playlist extends Component {
                   </SocialMediaIcon>
                 </FacebookShareButton>
                 <TwitterShareButton
-                  url={`https://www.starsignsbyti.com/playlist/${playlist.sign}`}
+                  url={`https://www.starsignsbyti.com/`}
                   title={`Get your personalized horoscope from T.I.`}
                   hashtag={["#TheLibra"]}
                   related={["tip"]}
