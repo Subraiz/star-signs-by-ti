@@ -133,7 +133,7 @@ const WebSongDetailsContainer = styled.div`
 
   @media (max-width: 660px) {
     height: 35vh;
-    overflow: hidden;
+    overflow-x: hidden;
     margin-bottom: 20px;
     border: 0px solid black;
   }
@@ -141,8 +141,9 @@ const WebSongDetailsContainer = styled.div`
 
 const SongContainer = styled.a`
   display: flex;
-  width: 95%;
+  width: 90%;
   margin-left: 5%;
+
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid #000;
