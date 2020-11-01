@@ -139,9 +139,9 @@ const WebSongDetailsContainer = styled.div`
   }
 `;
 
-const SongContainer = styled.div`
+const SongContainer = styled.a`
   display: flex;
-  width: 90%;
+  width: 95%;
   margin-left: 5%;
   align-items: center;
   justify-content: space-between;
@@ -150,6 +150,16 @@ const SongContainer = styled.div`
 
   &:last-child {
     margin-bottom: 20px;
+  }
+
+  .playlist-icon {
+    font-size: 22px;
+    padding-right: 20px;
+    color: black;
+  }
+
+  .song-name {
+    width: 70%;
   }
 `;
 
@@ -356,12 +366,11 @@ class Playlist extends Component {
       return (
         <SongContainer
           key={i}
-          onClick={() => {
-            window.location.href = `https://open.spotify.com/playlist/${playlistId}`;
-          }}
+          href={`https://open.spotify.com/playlist/${playlistId}`}
+          target="_blank"
         >
-          <Song>{song.name}</Song>
-          <FaPlay />
+          <Song className="song-name">{song.name}</Song>
+          <FaPlay className="playlist-icon" />
         </SongContainer>
       );
     });

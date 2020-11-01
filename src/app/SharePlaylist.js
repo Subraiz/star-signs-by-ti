@@ -439,8 +439,8 @@ class SharePlaylist extends Component {
             <p className="zodiac-sign">{playlist.sign}</p>
             <SocialMediaContainer>
               <FacebookShareButton
-                url={`https://www.starsignsbyti.com/playlist/${playlist.sign}`}
-                quote={"Stream The Libra Now"}
+                url={`https://www.starsignsbyti.com`}
+                quote={"Get your horoscope reading and playlist from T.I."}
                 hashtag="#TheLibra"
                 className="social-media-btn"
               >
@@ -449,8 +449,8 @@ class SharePlaylist extends Component {
                 </SocialMediaIcon>
               </FacebookShareButton>
               <TwitterShareButton
-                url={`https://www.starsignsbyti.com/playlist/${playlist.sign}`}
-                title={`Get your personalized horoscope from T.I.`}
+                url={`https://www.starsignsbyti.com`}
+                title={`Get your horoscope reading and playlist from T.I.`}
                 hashtag={["#TheLibra"]}
                 related={["tip"]}
                 className="social-media-btn"
